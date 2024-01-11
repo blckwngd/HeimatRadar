@@ -1,0 +1,42 @@
+body {
+  font-size: 14pt;
+  font-family: Verdana,Geneva,sans-serif;
+}
+#map { 
+  height: 75%;
+  width: 100%;
+  margin: 0 auto; 
+}
+#qr {
+  position: absolute;
+  left: 30px;
+  top: 950px;
+  z-index: 9999;
+}
+#qr img {
+  width: 200px;
+  height: 200px;
+} 
+#title {
+  text-align: center;
+}
+#summary {
+  text-align: center;
+}
+table {
+  width: 100%;
+  border: 1px solid #000000;
+  margin-top:30px;
+}
+table th {
+  text-align: left;
+  vertical-align: bottom;
+  font-size: 14pt;
+  font-family: Verdana,Geneva,sans-serif;
+}
+table td {
+  border: 1pt solid #000000;
+  font-size: 13pt;
+  font-family: Verdana,Geneva,sans-serif;
+  vertical-align: top;
+}
