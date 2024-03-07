@@ -21,14 +21,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
-  <title><?=$t["titel"]?></title>
+  <title data-i18n="reg.titel"><?=$t["titel"]?></title>
 </head>
 <body>
 
 <div class="container mt-5">
-  <h2><?=$t["titel"]?></h2>
 
-  <form action="/" class="was-validated">
+<!-- Sprach Auswahl -->
+<div class="row">
+  <div class="col-sm-6"></div>
+  <div class="col-sm-2">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="languageSelect" data-i18n="sprache">Sprache</label>
+      <select class="form-select" id="languageSelect">
+        <option value="de"selected>DE</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+  <h2 data-i18n="reg.titel"><?=$t["titel"]?></h2>
+
+  <form action="/" class="needs-validation" novalidate>
 
     <div class="row">
       <div class="col-sm-8">
@@ -53,7 +68,7 @@
         <div class="invalid-feedback">Bitte fülle das Feld aus.</div>
       </div>
     </div>
-    <?=$t["hinweis_standort"]?>
+    <span data-i18n="reg.hinweis-ort"><?=$t["hinweis_standort"]?></span>
     <p></p>
     
     <div class="row">
@@ -101,7 +116,7 @@
   <p></p>
   <div class="form-group">
     <p><strong>ALLGEMEINE HINWEISE</strong></p>
-    <?=$t["hinweis_allgemein"]?>
+    <span data-i18n="reg.hinweis-allgemein"><?=$t["hinweis_allgemein"]?></span>
   </div>
 
   <p></p>
@@ -118,8 +133,30 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+<script>
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
+
+<!-- Translation Modul von https://codeburst.io/translating-your-website-in-pure-javascript-98b9fa4ce427 -->
+<script src="https://unpkg.com/@andreasremdt/simple-translator@latest/dist/umd/translator.min.js"></script>
+<script src="inc/i18n.js"></script>
 
 </body>
 </html>
