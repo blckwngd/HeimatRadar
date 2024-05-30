@@ -82,7 +82,7 @@ async function updateMap(map, staende) {
         }
     });
     if (!found) {
-      var marker = L.marker([stand.lat, stand.lon], {title:`${stand.strasse}: ${stand.angebot}`});
+      var marker = L.marker([stand.lat, stand.lon], {icon:myMarker, title:`${stand.strasse}: ${stand.angebot}`});
       marker.dbId = stand.id;
       marker.dbStrasse = stand.strasse;
       marker.dbAngebot = stand.angebot;
@@ -130,6 +130,12 @@ function initHeimatRadar() {
   }
   
   //map.locate({setView: false, maxZoom: 16});
+  
+  // TESTING
+  L.marker([50.45100302904967, 7.5392630615161025], {
+    icon: myMarker
+  }).addTo(map);
+  
 }
 
 function fitView() {
