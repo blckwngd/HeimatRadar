@@ -23,6 +23,11 @@ body {
 #summary {
   text-align: center;
 }
+
+i.big {
+  padding-top: 8px;
+}
+
 table {
   width: 100%;
   border: 1px solid #000000;

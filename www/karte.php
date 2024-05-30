@@ -7,7 +7,14 @@
     <!-- LeafletJS | https://leafletjs.com/ -->  
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
-    
+
+    <!-- LeafletJS Extra Markers | -->
+    <link rel="stylesheet" href="https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/css/leaflet.extra-markers.min.css" />
+    <script src='https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/js/leaflet.extra-markers.min.js'></script>
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
+
     <!-- Fullscreen AddIn | https://github.com/Leaflet/Leaflet.fullscreen -->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
@@ -22,8 +29,17 @@
 
     
     <script type="text/javascript" language="javascript">
-      var staende0 = <?php include "orte.php"; ?>;
-      var printView = <?php echo ($printView ? 'true' : 'false'); ?>
+      var myMarker = L.ExtraMarkers.icon({
+        icon: 'shopping cart icon',
+        markerColor: 'green-light',
+        shape: 'circle',
+        prefix: 'icon',
+        extraClasses: 'big'
+      });
+
+      var staende0 = []; //<?php /*include "orte.php";*/ ?>;
+      var printView = <?php echo ($printView ? 'true' : 'false'); ?>;
+
       window.onload = initHeimatRadar;
     </script>
 
