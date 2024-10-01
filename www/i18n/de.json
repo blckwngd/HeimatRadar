@@ -1,8 +1,20 @@
 {
     "reg": {
-        "titel": "Teilnahme am Hof- und Gartenflohmarkt am 06. Juni 2024",
+        "titel": "Teilnahme am Hof- und Gartenflohmarkt am 07. Juni 2024",
         "hinweis-ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
-        "hinweis-allgemein": "<p>Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p><p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"info@rethink-ev.de\">Mail</a> oder telefonisch unter 02622/902787 Bescheid.</p>"
+        "hinweis-allgemein": "<p>Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p><p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"info@rethink-ev.de\">Mail</a> oder telefonisch unter 02622/902787 Bescheid.</p>",
+        
+        "inputName_label": "Name",
+        "inputName_platzhalter": "optional, wird nicht veröffentlicht",
+        "reg.inputName_hinweisUngueltig": "bitte fülle dieses Feld aus",
+        
+        "inputStrasse_label": "Straße",
+        "inputStrasse_platzhalter": "bitte Straße eingeben",
+        "reg.inputStrasse_hinweisUngueltig": "bitte fülle dieses Feld aus",
+        
+        "inputHausnummer_label": "Nummer",
+        "inputHausnummer_platzhalter": "Nr.",
+        "reg.inputHausnummer_hinweisUngueltig": "Hausnummer erforderlich"
     },
     "sprache": "Sprache"
 }
