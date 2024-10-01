@@ -1,8 +1,23 @@
 {
     "reg": {
         "titel": "Participation at Hof- und Gartenflohmarkt on 06. Juni 2024",
-        "hinweis-ort": "ATTENTION: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
-        "hinweis-allgemein": "<p>ENG: Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p><p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"info@rethink-ev.de\">Mail</a> oder telefonisch unter 02622/902787 Bescheid.</p>"
+
+        "hinweis-ort": "ATTENTION: market stalls must be on your own property. Pavement, street or the like are not permitted.",
+        "hinweis-allgemein": "<p><strong>only private stalls</strong> are permitted. Commercial vendors are barred from the event.</p><p>In case you wish to make <strong>subsequent modifications to your offer</strong>, feel free to contact us by <a href=\"info@rethink-ev.de\">Mail</a> oder by phone under (+49)2622/902787.</p>",
+        
+        "inputName_label": "Name",
+        "inputName_platzhalter": "optional, will not be published",
+        "reg.inputName_hinweisUngueltig": "please fill in this field",
+        "reg.inputName_hinweisGueltig": "ok",
+        
+        "inputStrasse_label": "Name",
+        "inputStrasse_platzhalter": "please enter street",
+        "reg.inputStrasse_hinweisUngueltig": "please fill in this field",
+        "reg.inputStrasse_hinweisGueltig": "ok",
+        
+        "inputHausnummer_label": "Number",
+        "inputHausnummer_platzhalter": "No.",
+        "reg.inputHausnummer_hinweisUngueltig": "no. required"
     },
     "sprache": "Language"
 }

@@ -1,4 +1,5 @@
 <?php
+
     /** CONFIG - HIER BEARBEITEN */
     $t = [
       "titel"             => "Teilnahme am Hof- und Gartenflohmarkt am 06. Juni 2024",
@@ -47,25 +48,22 @@
 
     <div class="row">
       <div class="col-sm-8">
-        <label for="name" class="form-label">Name:</label>
-        <input type="text" class="form-control" id="name" placeholder="Optional, wird nicht veröffentlicht" name="name">
-        <div class="invalid-feedback">Bitte fülle das Feld aus.</div>
-        <div class="valid-feedback">&nbsp;</div>
+        <label for="name" data-i18n="reg.inputName_label" class="form-label">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Optional, wird nicht veröffentlicht" data-i18n="reg.inputName_platzhalter" data-i18n-attr="placeholder" name="name"/>
+        <div class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig">Bitte fülle das Feld aus.</div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-6">
-        <label for="strasse" class="form-label">Straße:</label>
-        <input type="text" class="form-control" id="strasse" placeholder="Bitte Straße eingeben" name="strasse" required>
-        <div class="invalid-feedback">Bitte fülle das Feld aus.</div>
-        <div class="valid-feedback">&nbsp;</div>
+        <label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße:</label>
+        <input type="text" class="form-control" id="strasse" placeholder="Bitte Straße eingeben" data-i18n="reg.inputStrasse_platzhalter" data-i18n-attr="placeholder" name="strasse" required>
+        <div class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"></div>
       </div>
       <div class="col-sm-2">
-        <label for="hausnr" class="form-label">Hausnummer:</label>
-        <input type="text" class="form-control" id="hausnr" placeholder="Nr." name="hausnr" required>
-        <div class="valid-feedback">&nbsp;</div>
-        <div class="invalid-feedback">Bitte fülle das Feld aus.</div>
+        <label for="hausnr" class="form-label" data-i18n="reg.inputHausnummer_label">Hausnummer:</label>
+        <input type="text" class="form-control" id="hausnr" placeholder="Nr." data-i18n="reg.inputHausnummer_platzhalter" data-i18n-attr="placeholder" name="hausnr" required>
+        <div class="invalid-feedback" data-i18n="reg.inputHausnummer_hinweisUngueltig">Bitte fülle das Feld aus.</div>
       </div>
     </div>
     <span data-i18n="reg.hinweis-ort"><?=$t["hinweis_standort"]?></span>
