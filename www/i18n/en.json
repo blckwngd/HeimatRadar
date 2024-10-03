@@ -17,7 +17,11 @@
         
         "inputHausnummer_label": "Number",
         "inputHausnummer_platzhalter": "No.",
-        "reg.inputHausnummer_hinweisUngueltig": "no. required"
+        "reg.inputHausnummer_hinweisUngueltig": "no. required",
+
+        "inputEmail_label": "Email",
+        "inputEmail_platzhalter": "optional, will not be published",
+        "inputEmail_hinweisUngueltig": "please anter a valid email address, oder leave this field empty."
     },
     "sprache": "Language"
 }
