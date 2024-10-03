@@ -48,7 +48,7 @@
 
     <div class="row">
       <div class="col-sm-8">
-        <label for="name" data-i18n="reg.inputName_label" class="form-label">Name:</label>
+        <label for="name" data-i18n="reg.inputName_label" class="form-label">Name</label>:
         <input type="text" class="form-control" id="name" placeholder="Optional, wird nicht veröffentlicht" data-i18n="reg.inputName_platzhalter" data-i18n-attr="placeholder" name="name"/>
         <div class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig">Bitte fülle das Feld aus.</div>
       </div>
@@ -56,12 +56,12 @@
 
     <div class="row">
       <div class="col-sm-6">
-        <label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße:</label>
+        <label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße</label>:
         <input type="text" class="form-control" id="strasse" placeholder="Bitte Straße eingeben" data-i18n="reg.inputStrasse_platzhalter" data-i18n-attr="placeholder" name="strasse" required>
         <div class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"></div>
       </div>
       <div class="col-sm-2">
-        <label for="hausnr" class="form-label" data-i18n="reg.inputHausnummer_label">Hausnummer:</label>
+        <label for="hausnr" class="form-label" data-i18n="reg.inputHausnummer_label">Hausnummer</label>:
         <input type="text" class="form-control" id="hausnr" placeholder="Nr." data-i18n="reg.inputHausnummer_platzhalter" data-i18n-attr="placeholder" name="hausnr" required>
         <div class="invalid-feedback" data-i18n="reg.inputHausnummer_hinweisUngueltig">Bitte fülle das Feld aus.</div>
       </div>
@@ -71,12 +71,12 @@
     
     <div class="row">
       <div class="col-sm-4">
-        <label for="email" data-i18n="inputEmail_label" class="form-label">Email:</label>
+        <label for="email" data-i18n="inputEmail_label" class="form-label">Email</label>:
         <input data-i18n="reg.InputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
         <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
       </div>
       <div class="col-sm-4">
-        <label for="tel" class="form-label">Telefon:</label>
+        <label for="tel" class="form-label">Telefon</label>:
         <input type="tel" class="form-control" id="tel" placeholder="optional, wird nicht veröffentlicht" name="tel">
         <div class="valid-feedback">&nbsp;</div>
         <div class="invalid-feedback">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
