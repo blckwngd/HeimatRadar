@@ -6,15 +6,19 @@
         
         "inputName_label": "Name",
         "inputName_platzhalter": "optional, wird nicht veröffentlicht",
-        "reg.inputName_hinweisUngueltig": "bitte fülle dieses Feld aus",
+        "inputName_hinweisUngueltig": "bitte fülle dieses Feld aus",
         
         "inputStrasse_label": "Straße",
         "inputStrasse_platzhalter": "bitte Straße eingeben",
-        "reg.inputStrasse_hinweisUngueltig": "bitte fülle dieses Feld aus",
+        "inputStrasse_hinweisUngueltig": "bitte fülle dieses Feld aus",
         
         "inputHausnummer_label": "Nummer",
         "inputHausnummer_platzhalter": "Nr.",
-        "reg.inputHausnummer_hinweisUngueltig": "Hausnummer erforderlich"
+        "inputHausnummer_hinweisUngueltig": "Hausnummer erforderlich",
+
+        "inputEmail_label": "Email",
+        "inputEmail_platzhalter": "optional, wird nicht veröffentlicht",
+        "inputEmail_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer."
     },
     "sprache": "Sprache"
 }
