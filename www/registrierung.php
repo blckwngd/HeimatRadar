@@ -72,9 +72,8 @@
     <div class="row">
       <div class="col-sm-4">
         <label for="email" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
-        <div class="valid-feedback">&nbsp;</div>
-        <div class="invalid-feedback">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
+        <input data-i18n="reg.InputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
+        <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
       </div>
       <div class="col-sm-4">
         <label for="tel" class="form-label">Telefon:</label>
