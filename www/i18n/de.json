@@ -18,7 +18,15 @@
 
         "inputEmail_label": "Email",
         "inputEmail_platzhalter": "optional, wird nicht veröffentlicht",
-        "inputEmail_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer."
+        "inputEmail_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.",
+
+        "inputPhone_label": "Telefonnummer",
+        "inputPhone_platzhalter": "optional, wird nicht veröffentlicht",
+        "inputPhone_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.",
+        
+        "inputAngebot_label": "Angebot",
+        "inputAngebot_platzhalter": "Was bietest du an? (max. 200 Zeichen)",
+        "inputAngebot_hinweisUngueltig": "Bitte fülle dieses Feld aus (max. 200 Zeichen)"
     },
     "sprache": "Sprache"
 }

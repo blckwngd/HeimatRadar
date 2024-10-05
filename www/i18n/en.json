@@ -10,7 +10,7 @@
         "reg.inputName_hinweisUngueltig": "please fill in this field",
         "reg.inputName_hinweisGueltig": "ok",
         
-        "inputStrasse_label": "Name",
+        "inputStrasse_label": "Street",
         "inputStrasse_platzhalter": "please enter street",
         "reg.inputStrasse_hinweisUngueltig": "please fill in this field",
         "reg.inputStrasse_hinweisGueltig": "ok",
@@ -21,7 +21,15 @@
 
         "inputEmail_label": "Email",
         "inputEmail_platzhalter": "optional, will not be published",
-        "inputEmail_hinweisUngueltig": "please anter a valid email address, oder leave this field empty."
+        "inputEmail_hinweisUngueltig": "please enter a valid email address, oder leave this field empty.",
+        
+        "inputPhone_label": "Phone",
+        "inputPhone_platzhalter": "optional, will not be published",
+        "inputPhone_hinweisUngueltig": "please enter a valid phone number, oder leave this field empty.",
+        
+        "inputAngebot_label": "Offer",
+        "inputAngebot_platzhalter": "please enter what you want to sell at your stall.",
+        "inputAngebot_hinweisUngueltig": "please fill in this field (200 characters max.)"
     },
     "sprache": "Language"
 }
