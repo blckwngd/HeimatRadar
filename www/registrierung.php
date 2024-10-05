@@ -1,6 +1,6 @@
 <?php
 
-    /** CONFIG - HIER BEARBEITEN */
+    /** CONFIG - X HIER BEARBEITEN */
     $t = [
       "titel"             => "Teilnahme am Hof- und Gartenflohmarkt am 06. Juni 2024",
       "hinweis_standort"  => "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
