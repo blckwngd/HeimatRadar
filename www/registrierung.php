@@ -1,6 +1,6 @@
 <?php
 
-    /** CONFIG - X HIER BEARBEITEN */
+    /** CONFIG - HIER BEARBEITEN */
     $t = [
       "titel"             => "Teilnahme am Hof- und Gartenflohmarkt am 06. Juni 2024",
       "hinweis_standort"  => "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
@@ -31,8 +31,8 @@
 <!-- Sprach Auswahl -->
 <div class="row">
   <div class="col-sm-6"></div>
-  <div class="col-sm-2">
-    <div class="input-group mb-3">
+  <div class="col-sm-3">
+    <div class="input-group mb-4">
       <label class="input-group-text" for="languageSelect" data-i18n="sprache">Sprache</label>
       <select class="form-select" id="languageSelect">
         <option value="de"selected>DE</option>
@@ -72,23 +72,21 @@
     <div class="row">
       <div class="col-sm-4">
         <label for="email" data-i18n="inputEmail_label" class="form-label">Email</label>:
-        <input data-i18n="reg.InputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
+        <input data-i18n="reg.inputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
         <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
       </div>
       <div class="col-sm-4">
-        <label for="tel" class="form-label">Telefon</label>:
-        <input type="tel" class="form-control" id="tel" placeholder="optional, wird nicht veröffentlicht" name="tel">
-        <div class="valid-feedback">&nbsp;</div>
-        <div class="invalid-feedback">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
+        <label for="tel" data-i18n="inputPhone_label" class="form-label">Telefon</label>:
+        <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="tel" placeholder="optional, wird nicht veröffentlicht" name="tel">
+        <div class="invalid-feedback" data-i18n="reg.inputPhone_hinweisUngueltig">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
       </div>
     </div>
     
   <div class="row">
     <div class="col-sm-8">
-      <label for="angebot" class="form-label">Angebot:</label>
-      <textarea class="form-control" id="angebot" placeholder="Optional, was bietest du an?" name="angebot" maxlength="200"></textarea>
-      <div class="valid-feedback">OK. Maximal 200 Zeichen</div>
-      <div class="invalid-feedback">Bitte fülle das Feld aus.</div>
+      <label for="angebot" data-i18n="inputAngebot_label" class="form-label">Angebot:</label>
+      <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="Optional, was bietest du an?" name="angebot" maxlength="200"></textarea>
+      <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">Please fill in (max. 200 characters)</div>
     </div>
   </div>
   <p></p>
