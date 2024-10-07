@@ -1,28 +1,14 @@
 <?php
 
-    /** CONFIG - HIER BEARBEITEN */
-    $t = [
-      "titel"             => "Teilnahme am Hof- und Gartenflohmarkt am 06. Juni 2024",
-      "hinweis_standort"  => "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
-      "kontakt_mail"      => "info@rethink-ev.de",
-      "kontakt_tel"       => "02622/902787"
-    ];
+    $i18n = json_decode(file_get_contents("i18n/de.json"));
 
-    $t["hinweis_allgemein"] = "<p>Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p>
-    <p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"mailto:".$t["kontakt_mail"]."\">Mail</a> oder telefonisch unter ".$t["kontakt_tel"]." Bescheid.</p>";
-
-    $t["hinweis_datenschutz"] = "<p>Deine Daten werden ausschließlich für die Durchführung der Veranstaltung gespeichert und verarbeitet.
-      Die Adresse kann online und auf Flyern und Plakaten veröffentlicht werden, um Besuchern das Auffinden des jeweiligen Verkaufsstandes zu ermöglichen.
-      Nach Durchführung der Veranstaltung werden die Daten binnen 7 Tagen von unseren Systemen gelöscht.
-      Eine Löschung kann auch zu jedem früheren Zeitpunkt beantragt werden.
-      Eine Weitergabe der Daten an Dritte zu anderen als der oben genannten Zwecke ist ausgeschlossen.</p>";
 ?><!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
-  <title data-i18n="reg.titel"><?=$t["titel"]?></title>
+  <title data-i18n="reg.titel"><?= $i18n->reg->titel ?></title>
 </head>
 <body>
 
@@ -42,15 +28,15 @@
   </div>
 </div>
 
-  <h2 data-i18n="reg.titel"><?=$t["titel"]?></h2>
+  <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
   <form action="/" class="needs-validation" novalidate>
 
     <div class="row">
       <div class="col-sm-8">
-        <label for="name" data-i18n="reg.inputName_label" class="form-label">Name</label>:
-        <input type="text" class="form-control" id="name" placeholder="Optional, wird nicht veröffentlicht" data-i18n="reg.inputName_platzhalter" data-i18n-attr="placeholder" name="name"/>
-        <div class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig">Bitte fülle das Feld aus.</div>
+        <label for="name" data-i18n="reg.inputName_label" class="form-label"><?= $i18n->reg->inputName_label ?></label>:
+        <input type="text" class="form-control" id="name" placeholder="<?= $i18n->reg->inputName_platzhalter ?>" data-i18n="reg.inputName_platzhalter" data-i18n-attr="placeholder" name="name"/>
+        <div class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig"><?= $i18n->reg->inputName_hinweisUngueltig ?></div>
       </div>
     </div>
 
@@ -66,17 +52,17 @@
         <div class="invalid-feedback" data-i18n="reg.inputHausnummer_hinweisUngueltig">Bitte fülle das Feld aus.</div>
       </div>
     </div>
-    <span data-i18n="reg.hinweis-ort"><?=$t["hinweis_standort"]?></span>
+    <span data-i18n="reg.hinweis_ort"><?= $i18n->reg->hinweis_ort ?></span>
     <p></p>
     
     <div class="row">
       <div class="col-sm-4">
-        <label for="email" data-i18n="inputEmail_label" class="form-label">Email</label>:
+        <label for="email" data-i18n="reg.inputEmail_label" class="form-label">Email</label>:
         <input data-i18n="reg.inputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
         <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
       </div>
       <div class="col-sm-4">
-        <label for="tel" data-i18n="inputPhone_label" class="form-label">Telefon</label>:
+        <label for="tel" data-i18n="reg.inputPhone_label" class="form-label">Telefon</label>:
         <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="tel" placeholder="optional, wird nicht veröffentlicht" name="tel">
         <div class="invalid-feedback" data-i18n="reg.inputPhone_hinweisUngueltig">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
       </div>
@@ -84,7 +70,7 @@
     
   <div class="row">
     <div class="col-sm-8">
-      <label for="angebot" data-i18n="inputAngebot_label" class="form-label">Angebot:</label>
+      <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot:</label>
       <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="Optional, was bietest du an?" name="angebot" maxlength="200"></textarea>
       <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">Please fill in (max. 200 characters)</div>
     </div>
@@ -94,34 +80,35 @@
   <div class="row">
     <div class="col-sm-8">
       <input class="form-check-input" type="checkbox" id="teilnahme" name="remember" required>
-      <label class="form-check-label" for="teilnahme">Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.</label>
-      <div class="valid-feedback">akzeptiert</div>
-      <div class="invalid-feedback">Pflichtfeld</div>
+      <label class="form-check-label" data-i18n="reg.inputTeilnahme_label" for="teilnahme">Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.</label>
+      <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
+      <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-8">
       <input class="form-check-input" type="checkbox" id="datenschutz" name="remember" required>
-      <label class="form-check-label" for="datenschutz">ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
-      <div class="valid-feedback">akzeptiert</div>
-      <div class="invalid-feedback">Pflichtfeld</div>
+      <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
+      <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
+      <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
     </div>
   </div>
 
   <p></p>
   <div class="form-group">
-    <p><strong>ALLGEMEINE HINWEISE</strong></p>
-    <span data-i18n="reg.hinweis-allgemein"><?=$t["hinweis_allgemein"]?></span>
+    <p><strong data-i18n="reg.hinweis_allgemein_titel">ALLGEMEINE HINWEISE</strong></p>
+    <span data-i18n="reg.hinweis_allgemein"><?= $i18n->reg->hinweis_allgemein ?></span>
   </div>
 
   <p></p>
   <div class="form-group">
-    <p><strong><br>HINWEISE ZUM DATENSCHUTZ<br></strong></p>
-    <?=$t["hinweis_datenschutz"]?>
+    <p><br/><strong data-i18n="reg.hinweis_datenschutz_titel">HINWEISE ZUM DATENSCHUTZ</strong><br/></p>
+    <span data-i18n="reg.hinweis_datenschutz"><?= $i18n->reg->hinweis_datenschutz ?></span>
   </div>
 
+  <br/>
   <p>
-    <button type="submit" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
+    <button type="submit" data-i18n="reg.jetztTeilnehmen" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
   </p>
   </form>
   
