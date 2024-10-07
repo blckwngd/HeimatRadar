@@ -1,8 +1,7 @@
 {
     "reg": {
         "titel": "Teilnahme am Hof- und Gartenflohmarkt am 07. Juni 2024",
-        "hinweis-ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
-        "hinweis-allgemein": "<p>Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p><p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"mailto:info@rethink-ev.de\">Mail</a> oder telefonisch unter 02622/902787 Bescheid.</p>",
+        "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
         
         "inputName_label": "Name",
         "inputName_platzhalter": "optional, wird nicht veröffentlicht",
@@ -26,7 +25,19 @@
         
         "inputAngebot_label": "Angebot",
         "inputAngebot_platzhalter": "Was bietest du an? (max. 200 Zeichen)",
-        "inputAngebot_hinweisUngueltig": "Bitte fülle dieses Feld aus (max. 200 Zeichen)"
+        "inputAngebot_hinweisUngueltig": "Bitte fülle dieses Feld aus (max. 200 Zeichen)",
+
+        "inputTeilnahme_label": "Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.",
+        "inputDatenschutz_label": "Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.",
+
+        "hinweis_allgemein_titel": "ALLGEMEINE HINWEISE",
+        "hinweis_allgemein": "<p>Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p><p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"mailto:info@rethink-ev.de\">Mail</a> oder telefonisch unter 02622/902787 Bescheid.</p>",
+        "hinweis_datenschutz_titel": "HINWEISE ZUM DATENSCHUTZ",
+        "hinweis_datenschutz": "Deine Daten werden ausschließlich für die Durchführung der Veranstaltung gespeichert und verarbeitet. Die Adresse kann online und auf Flyern und Plakaten veröffentlicht werden, um Besuchern das Auffinden des jeweiligen Verkaufsstandes zu ermöglichen. Nach Durchführung der Veranstaltung werden die Daten binnen 7 Tagen von unseren Systemen gelöscht. Eine Löschung kann auch zu jedem früheren Zeitpunkt beantragt werden. Die Rechtsgrundlage der Verarbeitung ist deine Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, welche du jederzeit widerrufen kannst. Verantwortlich für die Datenverarbeitung ist ReThink e.V., Hauptstraße 127, 56566 Neuwied. Eine Weitergabe der Daten an Dritte zu anderen als den oben genannten Zwecken ist ausgeschlossen. Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner Daten sowie ein Beschwerderecht bei der zuständigen Datenschutzbehörde.",
+
+        "jetztTeilnehmen": "JETZT TEILNEHMEN"
     },
-    "sprache": "Sprache"
+    "sprache": "Sprache",
+    "akzeptiert": "Akzeptiert",
+    "pflichtfeld": "Pflichtfeld"
 }
