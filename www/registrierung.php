@@ -1,4 +1,5 @@
 <?php
+    include_once("config/config.php");
 
     $i18n = json_decode(file_get_contents("i18n/de.json"));
 
@@ -7,7 +8,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+
+  <!-- HeimatRadar -->
+  <link href='/inc/heimatradar/heimatradar.css' rel='stylesheet' />
+  <script src='/inc/heimatradar/heimatradar.js'></script>
+  
   <title data-i18n="reg.titel"><?= $i18n->reg->titel ?></title>
 </head>
 <body>
@@ -21,8 +29,12 @@
     <div class="input-group mb-4">
       <label class="input-group-text" for="languageSelect" data-i18n="sprache">Sprache</label>
       <select class="form-select" id="languageSelect">
-        <option value="de"selected>DE</option>
-        <option value="en">EN</option>
+        <?php
+          foreach ($languages as $k => $l) {
+            $first = ($k == array_keys($languages)[0]);
+            echo "<option value=\"$k\"" . ($first ? " selected" : "") . ">$l</option>\r\n";
+          }
+        ?>
       </select>
     </div>
   </div>
@@ -40,6 +52,7 @@
       </div>
     </div>
 
+    <div>&nbsp;</div>
     <div class="row">
       <div class="col-sm-6">
         <label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße</label>:
@@ -53,8 +66,8 @@
       </div>
     </div>
     <span data-i18n="reg.hinweis_ort"><?= $i18n->reg->hinweis_ort ?></span>
-    <p></p>
     
+    <div>&nbsp;</div>
     <div class="row">
       <div class="col-sm-4">
         <label for="email" data-i18n="reg.inputEmail_label" class="form-label">Email</label>:
@@ -67,49 +80,61 @@
         <div class="invalid-feedback" data-i18n="reg.inputPhone_hinweisUngueltig">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
       </div>
     </div>
+
+    <div>&nbsp;</div>
+    <div class="row">
+      <div class="col-sm-8">
+        <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot:</label>
+        <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="(optional) was bietest du an?" name="angebot" maxlength="200"></textarea>
+        <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">max. 200 Zeichen</div>
+      </div>
+    </div>
     
-  <div class="row">
-    <div class="col-sm-8">
-      <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot:</label>
-      <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="Optional, was bietest du an?" name="angebot" maxlength="200"></textarea>
-      <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">Please fill in (max. 200 characters)</div>
+    <div>&nbsp;</div>
+    <div class="row">
+      <div class="col-sm-8">
+        <label for="kommentar" data-i18n="reg.inputKommentar_label" class="form-label">Kommentar:</label>
+        <textarea data-i18n="reg.inputKommentar_platzhalter" data-i18n-attr="placeholder" class="form-control" id="kommentar" placeholder="(optional, wird nicht veröffentlicht) möchtest du uns etwas mitteilen?" name="kommentar" maxlength="2048"></textarea>
+        <div data-i18n="reg.inputKommentar_hinweisUngueltig" class="invalid-feedback">max. 2048 Zeichen</div>
+      </div>
     </div>
-  </div>
-  <p></p>
+    <p></p>
 
-  <div class="row">
-    <div class="col-sm-8">
-      <input class="form-check-input" type="checkbox" id="teilnahme" name="remember" required>
-      <label class="form-check-label" data-i18n="reg.inputTeilnahme_label" for="teilnahme">Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.</label>
-      <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
-      <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
+    <div class="row">
+      <div class="col-sm-8">
+        <input class="form-check-input" type="checkbox" id="teilnahme" name="remember" required>
+        <label class="form-check-label" data-i18n="reg.inputTeilnahme_label" for="teilnahme">Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.</label>
+        <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
+        <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-8">
-      <input class="form-check-input" type="checkbox" id="datenschutz" name="remember" required>
-      <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
-      <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
-      <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <input class="form-check-input" type="checkbox" id="datenschutz" name="remember" required>
+        <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
+        <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
+        <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
+      </div>
     </div>
-  </div>
 
-  <p></p>
-  <div class="form-group">
-    <p><strong data-i18n="reg.hinweis_allgemein_titel">ALLGEMEINE HINWEISE</strong></p>
-    <span data-i18n="reg.hinweis_allgemein"><?= $i18n->reg->hinweis_allgemein ?></span>
-  </div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <div class="form-group">
+      <p><strong data-i18n="reg.hinweis_allgemein_titel">ALLGEMEINE HINWEISE</strong></p>
+      <span data-i18n="reg.hinweis_allgemein"><?= $i18n->reg->hinweis_allgemein ?></span>
+    </div>
 
-  <p></p>
-  <div class="form-group">
-    <p><br/><strong data-i18n="reg.hinweis_datenschutz_titel">HINWEISE ZUM DATENSCHUTZ</strong><br/></p>
-    <span data-i18n="reg.hinweis_datenschutz"><?= $i18n->reg->hinweis_datenschutz ?></span>
-  </div>
+    <p></p>
+    <div class="form-group">
+      <p><br/><strong data-i18n="reg.hinweis_datenschutz_titel">HINWEISE ZUM DATENSCHUTZ</strong><br/></p>
+      <span data-i18n="reg.hinweis_datenschutz"><?= $i18n->reg->hinweis_datenschutz ?></span>
+    </div>
 
-  <br/>
-  <p>
-    <button type="submit" data-i18n="reg.jetztTeilnehmen" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
-  </p>
+    <br/>
+    <p>
+      <button type="submit" data-i18n="reg.jetztTeilnehmen" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
+    </p>
   </form>
   
 

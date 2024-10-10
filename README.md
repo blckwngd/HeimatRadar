@@ -28,6 +28,10 @@ Durch die teilautomatisierte Verwaltung reduziert das Tool den Arbeitsaufwand f�
 3. Anpassen der Konfiguration
    passe die Datenbankverbindung unter www\config\config.php an
 
+4. Erstellen der MySQL-Tabelle
+   Rufe das MySQL-Verwaltungswerkzeug deiner Wahl auf (z.B. phpMyAdmin) und importiere die Datei sql\schema.sql
+   Das erstellt eine neue Tabelle "heimatradar" in der gewählten Datenbank.
+
 
 ## Mitwirken
 Beiträge und Verbesserungsvorschläge sind willkommen! Bitte erstelle einen Issue oder einen Pull-Request, falls du Ideen oder Bugfixes hast.

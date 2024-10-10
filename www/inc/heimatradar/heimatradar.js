@@ -131,11 +131,6 @@ function initHeimatRadar() {
   
   //map.locate({setView: false, maxZoom: 16});
   
-  // TESTING
-  L.marker([50.45100302904967, 7.5392630615161025], {
-    icon: myMarker
-  }).addTo(map);
-  
 }
 
 function fitView() {

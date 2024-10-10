@@ -4,7 +4,7 @@
         "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
         
         "inputName_label": "Name",
-        "inputName_platzhalter": "optional, wird nicht veröffentlicht",
+        "inputName_platzhalter": "(optional, wird nicht veröffentlicht)",
         "inputName_hinweisUngueltig": "bitte fülle dieses Feld aus",
         
         "inputStrasse_label": "Straße",
@@ -16,16 +16,20 @@
         "inputHausnummer_hinweisUngueltig": "Hausnummer erforderlich",
 
         "inputEmail_label": "Email",
-        "inputEmail_platzhalter": "optional, wird nicht veröffentlicht",
+        "inputEmail_platzhalter": "(optional, wird nicht veröffentlicht) an diese Adresse senden wir Informationen zum Markt.",
         "inputEmail_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.",
 
         "inputPhone_label": "Telefonnummer",
-        "inputPhone_platzhalter": "optional, wird nicht veröffentlicht",
+        "inputPhone_platzhalter": "(optional, wird nicht veröffentlicht)",
         "inputPhone_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.",
         
         "inputAngebot_label": "Angebot",
-        "inputAngebot_platzhalter": "Was bietest du an? (max. 200 Zeichen)",
-        "inputAngebot_hinweisUngueltig": "Bitte fülle dieses Feld aus (max. 200 Zeichen)",
+        "inputAngebot_platzhalter": "(optional) was bietest du an?",
+        "inputAngebot_hinweisUngueltig": "max. 200 Zeichen",
+
+        "inputKommentar_label": "Kommentar",
+        "inputKommentar_platzhalter": "(optional, wird nicht veröffentlicht) möchtest du uns etwas mitteilen?",
+        "inputKommentar_hinweisUngueltig": "max. 200 Zeichen",
 
         "inputTeilnahme_label": "Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.",
         "inputDatenschutz_label": "Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.",
