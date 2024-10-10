@@ -5,7 +5,7 @@
         "hinweis_ort": "ATTENTION: market stalls must be on your own property. Pavement, street or the like are not permitted.",
         
         "inputName_label": "Name",
-        "inputName_platzhalter": "optional, will not be published",
+        "inputName_platzhalter": "(optional, will not be published)",
         "reg.inputName_hinweisUngueltig": "please fill in this field",
         "reg.inputName_hinweisGueltig": "ok",
         
@@ -19,16 +19,20 @@
         "reg.inputHausnummer_hinweisUngueltig": "no. required",
 
         "inputEmail_label": "Email",
-        "inputEmail_platzhalter": "optional, will not be published",
+        "inputEmail_platzhalter": "(optional, will not be published)",
         "inputEmail_hinweisUngueltig": "please enter a valid email address, oder leave this field empty.",
         
         "inputPhone_label": "Phone",
-        "inputPhone_platzhalter": "optional, will not be published",
+        "inputPhone_platzhalter": "(optional, will not be published)",
         "inputPhone_hinweisUngueltig": "please enter a valid phone number, oder leave this field empty.",
         
         "inputAngebot_label": "Offer",
         "inputAngebot_platzhalter": "please enter what you want to sell at your stall.",
-        "inputAngebot_hinweisUngueltig": "please fill in this field (200 characters max.)",
+        "inputAngebot_hinweisUngueltig": "200 characters max.",
+        
+        "inputKommentar_label": "Comment",
+        "inputKommentar_platzhalter": "(optional) what do you want to let us know?",
+        "inputKommentar_hinweisUngueltig": "2000 characters max.",
 
         "inputTeilnahme_label": "I want to participate at the given address.",
         "inputDatenschutz_label": "I have read and accepted the privacy policy mentioned below.",
