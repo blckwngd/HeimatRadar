@@ -96,7 +96,7 @@ async function updateMap(map, staende) {
 }
 
 async function updateData(map) {
-  let Response = await fetch('/orte.php/');
+  let Response = await fetch('/api.php/');
   let staende = await Response.json();
   updateMap(map, staende);
   updateTable(staende);
