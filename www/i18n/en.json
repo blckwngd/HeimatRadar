@@ -5,18 +5,17 @@
         "hinweis_ort": "ATTENTION: market stalls must be on your own property. Pavement, street or the like are not permitted.",
         
         "inputName_label": "Name",
-        "inputName_platzhalter": "(optional, will not be published)",
-        "reg.inputName_hinweisUngueltig": "please fill in this field",
+        "inputName_platzhalter": "your name (optional, will not be published)",
+        "reg.inputName_hinweisUngueltig": "100 characters max.",
         "reg.inputName_hinweisGueltig": "ok",
         
         "inputStrasse_label": "Street",
-        "inputStrasse_platzhalter": "please enter street",
-        "reg.inputStrasse_hinweisUngueltig": "please fill in this field",
-        "reg.inputStrasse_hinweisGueltig": "ok",
+        "inputStrasse_platzhalter": "please enter street (required, 50 characters max.)",
+        "reg.inputStrasse_hinweisUngueltig": "required; 50 characters max.",
         
         "inputHausnummer_label": "Number",
-        "inputHausnummer_platzhalter": "No.",
-        "reg.inputHausnummer_hinweisUngueltig": "no. required",
+        "inputHausnummer_platzhalter": "No. (required)",
+        "reg.inputHausnummer_hinweisUngueltig": "required, 10 characters max.",
 
         "inputEmail_label": "Email",
         "inputEmail_platzhalter": "(optional, will not be published)",

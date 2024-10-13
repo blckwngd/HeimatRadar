@@ -55,14 +55,14 @@
     <div>&nbsp;</div>
     <div class="row">
       <div class="col-sm-6">
-        <label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße</label>:
+        *<label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße</label>:
         <input type="text" class="form-control" id="strasse" placeholder="Bitte Straße eingeben" data-i18n="reg.inputStrasse_platzhalter" data-i18n-attr="placeholder" name="strasse" required>
-        <div class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"></div>
+        <div class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"><?= $i18n->reg->inputStrasse_hinweisUngueltig ?></div>
       </div>
       <div class="col-sm-2">
-        <label for="hausnr" class="form-label" data-i18n="reg.inputHausnummer_label">Hausnummer</label>:
+        *<label for="hausnr" class="form-label" data-i18n="reg.inputHausnummer_label">Hausnummer</label>:
         <input type="text" class="form-control" id="hausnr" placeholder="Nr." data-i18n="reg.inputHausnummer_platzhalter" data-i18n-attr="placeholder" name="hausnr" required>
-        <div class="invalid-feedback" data-i18n="reg.inputHausnummer_hinweisUngueltig">Bitte fülle das Feld aus.</div>
+        <div class="invalid-feedback" data-i18n="reg.inputHausnummer_hinweisUngueltig"><?= $i18n->reg->inputHausnummer_hinweisUngueltig ?></div>
       </div>
     </div>
     <span data-i18n="reg.hinweis_ort"><?= $i18n->reg->hinweis_ort ?></span>
@@ -102,7 +102,7 @@
 
     <div class="row">
       <div class="col-sm-8">
-        <input class="form-check-input" type="checkbox" id="teilnahme" name="remember" required>
+        <input class="form-check-input" type="checkbox" id="teilnahme" name="teilnahme" required>
         <label class="form-check-label" data-i18n="reg.inputTeilnahme_label" for="teilnahme">Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.</label>
         <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
         <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
@@ -111,7 +111,7 @@
 
     <div class="row">
       <div class="col-sm-8">
-        <input class="form-check-input" type="checkbox" id="datenschutz" name="remember" required>
+        <input class="form-check-input" type="checkbox" id="datenschutz" name="datenschutz" required>
         <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
         <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
         <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>

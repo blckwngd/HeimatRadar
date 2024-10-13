@@ -4,16 +4,16 @@
         "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
         
         "inputName_label": "Name",
-        "inputName_platzhalter": "(optional, wird nicht veröffentlicht)",
-        "inputName_hinweisUngueltig": "bitte fülle dieses Feld aus",
+        "inputName_platzhalter": "dein Name (optional, wird nicht veröffentlicht; max. 100 Zeichen)",
+        "inputName_hinweisUngueltig": "maximal 100 Zeichen.",
         
         "inputStrasse_label": "Straße",
-        "inputStrasse_platzhalter": "bitte Straße eingeben",
-        "inputStrasse_hinweisUngueltig": "bitte fülle dieses Feld aus",
+        "inputStrasse_platzhalter": "bitte Straße eingeben (max. 50 Zeichen)",
+        "inputStrasse_hinweisUngueltig": "Pflichtfeld; max. 50 Zeichen.",
         
         "inputHausnummer_label": "Nummer",
         "inputHausnummer_platzhalter": "Nr.",
-        "inputHausnummer_hinweisUngueltig": "Hausnummer erforderlich",
+        "inputHausnummer_hinweisUngueltig": "Pflichtfeld; max. 50 Zeichen.",
 
         "inputEmail_label": "Email",
         "inputEmail_platzhalter": "(optional, wird nicht veröffentlicht) an diese Adresse senden wir Informationen zum Markt.",
