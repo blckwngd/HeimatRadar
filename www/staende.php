@@ -63,6 +63,66 @@ function handlePost($pdo, $input) {
       ]);
       return;
     }
+    
+    // validiere Email
+    if (strlen($input["email"]) > 100 || ((strlen($input["email"]) > 0) && !filter_var($input["email"], FILTER_VALIDATE_EMAIL))) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputEmail_hinweisUngueltig",
+        'field' => 'email'
+      ]);
+      return;
+    }
+
+    // validiere Telefon
+    if (strlen($input["tel"]) > 50) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputPhone_hinweisUngueltig",
+        'field' => 'tel'
+      ]);
+      return;
+    }
+    
+    // validiere Angebot
+    if (strlen($input["angebot"]) >= 1024) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputAngebot_hinweisUngueltig",
+        'field' => 'angebot'
+      ]);
+      return;
+    }
+    
+    // validiere Kommentar
+    if (strlen($input["kommentar"]) >= 2048) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputAngebot_hinweisUngueltig",
+        'field' => 'kommentar'
+      ]);
+      return;
+    }
+    
+    // validiere Teilnahme Checkbox
+    if (!isset($input["teilnahme"]) || ($input["teilnahme"] != "on")) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputTeilnahme_hinweisUngueltig",
+        'field' => 'teilnahme'
+      ]);
+      return;
+    }
+    
+    // validiere Datenschtz Checkbox
+    if (!isset($input["datenschutz"]) || ($input["datenschutz"] != "on")) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputDatenschutz_hinweisUngueltig",
+        'field' => 'datenschutz'
+      ]);
+      return;
+    }
 
     echo json_encode(['status' => 'ok']);
     /*
