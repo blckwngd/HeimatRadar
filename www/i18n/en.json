@@ -43,6 +43,17 @@
 
         "jetztTeilnehmen": "PARTICIPATE NOW"
     },
+    
+    "login": {
+        "titel": "Einloggen zum Verwalten",
+        "inputUsername_label": "Username",
+        "inputUsername_platzhalter": "",
+        "inputPassword_label": "Password",
+        "inputPassword_platzhalter": "*******",
+        "btnLogin": "Login",
+        "msgLoginFailed": "Login failed."
+    },
+
     "sprache": "Language",
     "akzeptiert": "accepted",
     "pflichtfeld": "mandantory field"

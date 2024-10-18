@@ -41,6 +41,17 @@
 
         "jetztTeilnehmen": "JETZT TEILNEHMEN"
     },
+    
+    "login": {
+        "titel": "Login for administration",
+        "inputUsername_label": "Benutzername",
+        "inputUsername_platzhalter": "",
+        "inputPassword_label": "Passwort",
+        "inputPassword_platzhalter": "*******",
+        "btnLogin": "Einloggen",
+        "msgLoginFailed": "Login fehlgeschlagen."
+    },
+
     "sprache": "Sprache",
     "akzeptiert": "Akzeptiert",
     "pflichtfeld": "Pflichtfeld"
