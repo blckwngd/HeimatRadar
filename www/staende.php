@@ -75,11 +75,11 @@ function handlePost($pdo, $input) {
     }
 
     // validiere Telefon
-    if (strlen($input["tel"]) > 50) {
+    if (strlen($input["phone"]) > 50) {
       echo json_encode([
         'status' => 'error',
         'message' => "reg.inputPhone_hinweisUngueltig",
-        'field' => 'tel'
+        'field' => 'phone'
       ]);
       return;
     }
@@ -90,6 +90,17 @@ function handlePost($pdo, $input) {
         'status' => 'error',
         'message' => "reg.inputAngebot_hinweisUngueltig",
         'field' => 'angebot'
+      ]);
+      return;
+    }
+    
+    // validiere Anzahl
+    $anzahl = intval($input["anzahl"]);
+    if (($anzahl <= 0) || ($anzahl > MAX_HAUSHALTE_PRO_ADRESSE)) {
+      echo json_encode([
+        'status' => 'error',
+        'message' => "reg.inputAnzahl_hinweisUngueltig",
+        'field' => 'anzahl'
       ]);
       return;
     }
@@ -124,12 +135,28 @@ function handlePost($pdo, $input) {
       return;
     }
 
-    echo json_encode(['status' => 'ok']);
-    /*
-    $sql = "INSERT INTO users (name, email) VALUES (:name, :email)";
+    $token = md5(md5(rand()) . rand());
+    $sql = "INSERT INTO `".MYSQL_TABLE."` 
+      (`name`, `strasse`, `hausnummer`, `telefon`, `email`, `teilnahme`, `datenschutz`, `anzahl`, `angebot`, `kommentar`, `token`) 
+      VALUES (:name, :strasse, :hausnummer, :telefon, :email, :teilnahme, :datenschutz, :anzahl, :angebot, :kommentar, :token)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['name' => $input['name'], 'email' => $input['email']]);
-    echo json_encode(['message' => 'User created successfully']);*/
+    var_dump($input);
+    $stmt->execute([
+      'name' => $input['name'],
+      'strasse' => $input['strasse'],
+      'hausnummer' => $input['hausnr'],
+      'telefon' => $input['phone'],
+      'email' => $input['email'],
+      'teilnahme' => 1,
+      'datenschutz' => 1,
+      'anzahl' => $anzahl,
+      'angebot' => $input['angebot'],
+      'kommentar' => $input['kommentar'],
+      'token' => $token
+    ]);
+    echo json_encode(['message' => 'User created successfully']);
+    echo json_encode(['token' => $token]);
+    echo json_encode(['status' => 'ok']);
 }
 
 function handlePut($pdo, $input) {

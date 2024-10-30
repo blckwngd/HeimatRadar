@@ -42,7 +42,7 @@
 
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
-  <form action="/" class="needs-validation" novalidate>
+  <form action="staende.php" class="needs-validation" method="post" id="registrationForm" novalidate>
 
     <div class="row">
       <div class="col-sm-8">
@@ -69,14 +69,25 @@
     
     <div>&nbsp;</div>
     <div class="row">
+      <div class="col-sm-2">
+        *<label for="anzahl" class="form-label" data-i18n="reg.inputAnzahl_label">Anzahl</label>:
+        <input type="number" value="1" class="form-control" id="anzahl" placeholder="1" min="1" max="10" data-i18n="reg.inputAnzahl_platzhalter" data-i18n-attr="placeholder" name="anzahl" required>
+        <div class="invalid-feedback" data-i18n="reg.inputAnzahl_hinweisUngueltig"><?= $i18n->reg->inputAnzahl_hinweisUngueltig ?></div>
+      </div>
+      <div class="col-sm-6"></div>
+    </div>
+    <span data-i18n="reg.inputAnzahl_hinweis"><?= $i18n->reg->inputAnzahl_hinweis ?></span>
+
+    <div>&nbsp;</div>
+    <div class="row">
       <div class="col-sm-4">
         <label for="email" data-i18n="reg.inputEmail_label" class="form-label">Email</label>:
         <input data-i18n="reg.inputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
         <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
       </div>
       <div class="col-sm-4">
-        <label for="tel" data-i18n="reg.inputPhone_label" class="form-label">Telefon</label>:
-        <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="tel" placeholder="optional, wird nicht veröffentlicht" name="tel">
+        <label for="phone" data-i18n="reg.inputPhone_label" class="form-label">Telefon</label>:
+        <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="phone" placeholder="optional, wird nicht veröffentlicht" name="phone">
         <div class="invalid-feedback" data-i18n="reg.inputPhone_hinweisUngueltig">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
       </div>
     </div>
@@ -150,6 +161,7 @@
       // Loop over them and prevent submission
       var validation = Array.prototype.filter.call(forms, function (form) {
         form.addEventListener('submit', function (event) {
+          console.log("submit2");
           if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -165,5 +177,29 @@
 <script src="https://unpkg.com/@andreasremdt/simple-translator@latest/dist/umd/translator.min.js"></script>
 <script src="inc/i18n.js"></script>
 
+<script type="text/javascript">
+
+  var form = document.getElementById('registrationForm');
+
+  function processForm(e) {
+      
+      if (form.checkValidity() === false) {
+        alert('invalid');
+        if (e.preventDefault) e.preventDefault();
+      } else {
+        alert('valid');
+      }
+      form.classList.add('was-validated');
+
+      return false;
+  }
+
+  if (form.attachEvent) {
+      form.attachEvent("submit", processForm);
+  } else {
+      form.addEventListener("submit", processForm);
+  }
+
+</script>
 </body>
 </html>
