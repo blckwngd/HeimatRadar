@@ -23,6 +23,11 @@
         "inputPhone_platzhalter": "(optional, wird nicht veröffentlicht)",
         "inputPhone_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.",
         
+        "inputAnzahl_label": "Zahl der Stände",
+        "inputAnzahl_platzhalter": "1",
+        "inputAnzahl_hinweisUngueltig": "Bitte geben Sie eine Zahl zwischen 1 und 10 ein",
+        "inputAnzahl_hinweis": "Wie viele Haushalte werden an dieser Adresse teilnehmen?",
+        
         "inputAngebot_label": "Angebot",
         "inputAngebot_platzhalter": "(optional) was bietest du an?",
         "inputAngebot_hinweisUngueltig": "max. 200 Zeichen",

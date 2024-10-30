@@ -15,7 +15,7 @@
         
         "inputHausnummer_label": "Number",
         "inputHausnummer_platzhalter": "No. (required)",
-        "reg.inputHausnummer_hinweisUngueltig": "required, 10 characters max.",
+        "inputHausnummer_hinweisUngueltig": "required, 10 characters max.",
 
         "inputEmail_label": "Email",
         "inputEmail_platzhalter": "(optional, will not be published)",
@@ -24,6 +24,11 @@
         "inputPhone_label": "Phone",
         "inputPhone_platzhalter": "(optional, will not be published)",
         "inputPhone_hinweisUngueltig": "please enter a valid phone number, oder leave this field empty.",
+        
+        "inputAnzahl_label": "Number of participants",
+        "inputAnzahl_platzhalter": "1",
+        "inputAnzahl_hinweisUngueltig": "required, enter a number between 1 and 10",
+        "inputAnzahl_hinweis": "how many households will take part at this address?",
         
         "inputAngebot_label": "Offer",
         "inputAngebot_platzhalter": "please enter what you want to sell at your stall.",
