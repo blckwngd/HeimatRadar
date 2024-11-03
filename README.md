@@ -31,7 +31,8 @@ Bis zur ersten voll lauffähigen Version dient der Code dazu, den Fortschritt de
    Alle Texte sind im Verzeichnis www/i18n/ definiert. Dort können Inhalte und Übersetzungen an die jeweiligen Anforderungen angepasst werden.
 
 3. Anpassen der Konfiguration
-   passe die Datenbankverbindung unter www\config\config.php an
+   Benenne die Datei www\config\config.example.php in config.php um (oder kopiere sie).
+   Passe die Datenbankverbindung und alle weiteren Optionen in der config.php an.
 
 4. Erstellen der MySQL-Tabelle
    Rufe das MySQL-Verwaltungswerkzeug deiner Wahl auf (z.B. phpMyAdmin) und importiere die Datei sql\schema.sql
