@@ -5,6 +5,7 @@ include("config/config.php");
 
 $method = $_SERVER['REQUEST_METHOD'];
 $input = json_decode(file_get_contents('php://input'), true);
+$isLoggedIn = ($_SESSION["API_SECRET"] == API_SECRET);
 
 switch ($method) {
     case 'GET':
@@ -154,9 +155,15 @@ function handlePost($pdo, $input) {
       'kommentar' => $input['kommentar'],
       'token' => $token
     ]);
-    echo json_encode(['message' => 'User created successfully']);
-    echo json_encode(['token' => $token]);
-    echo json_encode(['status' => 'ok']);
+    if ($isLoggedIn && ($input["validieren"] == "on")) {
+      return validateEntry($pdo->lastInsertId());
+    }
+    
+    echo json_encode([
+      'message' => 'success',
+      'token' => $token,
+      'status' => 'ok'
+    ]);
 }
 
 function handlePut($pdo, $input) {

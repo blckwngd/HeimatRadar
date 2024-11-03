@@ -28,7 +28,7 @@
         "inputAnzahl_label": "Number of participants",
         "inputAnzahl_platzhalter": "1",
         "inputAnzahl_hinweisUngueltig": "required, enter a number between 1 and 10",
-        "inputAnzahl_hinweis": "how many households will take part at this address?",
+        "inputAnzahl_hinweis": "how many households will participate at this address?",
         
         "inputAngebot_label": "Offer",
         "inputAngebot_platzhalter": "please enter what you want to sell at your stall.",
@@ -40,6 +40,7 @@
 
         "inputTeilnahme_label": "I want to participate at the given address.",
         "inputDatenschutz_label": "I have read and accepted the privacy policy mentioned below.",
+        "inputValidieren_label": "validate immediately.",
         
         "hinweis_allgemein_titel": "GENERAL NOTICE",
         "hinweis_allgemein": "<p><strong>only private stalls</strong> are permitted. Commercial vendors are barred from the event.</p><p>In case you wish to make <strong>subsequent modifications to your offer</strong>, feel free to contact us by <a href=\"mailto:info@rethink-ev.de\">mail</a> oder by phone under (+49)2622/902787.</p>",
@@ -47,6 +48,11 @@
         "hinweis_datenschutz": "Your data will only be stored and processed for the purpose of organizing the event. The address may be published online and on flyers and posters to help visitors locate the respective sales stand. After the event, the data will be deleted from our systems within 7 days. You may also request the deletion of your data at any time before that. The legal basis for processing is your consent in accordance with Art. 6(1)(a) GDPR, which you can withdraw at any time. The person responsible for data processing is ReThink e.V., Hauptstraße 127, 56566 Neuwied. Your data will not be shared with third parties for purposes other than those mentioned above. You have the right to access, rectify, delete, and restrict the processing of your data, as well as the right to lodge a complaint with the competent data protection authority.",
 
         "jetztTeilnehmen": "PARTICIPATE NOW"
+    },
+    
+    "karte": {
+        "titel": "Welcome to the yard flea market",
+        "untertitel": "on Sept 2nd, 9am to 4pm, all over Heimbach-Weis"
     },
     
     "login": {
