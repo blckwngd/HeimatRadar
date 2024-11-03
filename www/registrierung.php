@@ -3,6 +3,8 @@
 
     $i18n = json_decode(file_get_contents("i18n/de.json"));
 
+    $isLoggedIn = ($_SESSION["API_SECRET"] == API_SECRET);
+
 ?><!DOCTYPE html>
 <html lang="de">
 <head>
@@ -42,6 +44,10 @@
 
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
+  <?php if ($isLoggedIn) { ?>
+    <div><i>Sie sind eingeloggt</i></div>
+  <?php } ?>
+
   <form action="staende.php" class="needs-validation" method="post" id="registrationForm" novalidate>
 
     <div class="row">
@@ -69,12 +75,12 @@
     
     <div>&nbsp;</div>
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         *<label for="anzahl" class="form-label" data-i18n="reg.inputAnzahl_label">Anzahl</label>:
         <input type="number" value="1" class="form-control" id="anzahl" placeholder="1" min="1" max="10" data-i18n="reg.inputAnzahl_platzhalter" data-i18n-attr="placeholder" name="anzahl" required>
         <div class="invalid-feedback" data-i18n="reg.inputAnzahl_hinweisUngueltig"><?= $i18n->reg->inputAnzahl_hinweisUngueltig ?></div>
       </div>
-      <div class="col-sm-6"></div>
+      <div class="col-sm-5"></div>
     </div>
     <span data-i18n="reg.inputAnzahl_hinweis"><?= $i18n->reg->inputAnzahl_hinweis ?></span>
 
@@ -124,10 +130,21 @@
       <div class="col-sm-8">
         <input class="form-check-input" type="checkbox" id="datenschutz" name="datenschutz" required>
         <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
-        <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
-        <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
+        <div class="valid-feedback" data-i18n="akzeptiert"><?= $i18n->akzeptiert ?></div>
+        <div class="invalid-feedback" data-i18n="pflichtfeld"><?= $i18n->pflichtfeld ?></div>
       </div>
     </div>
+
+    
+    <?php if ($isLoggedIn) { ?>
+      <div class="row adminFeature">
+        <div class="col-sm-8">
+          <input class="form-check-input" type="checkbox" id="validieren" name="validieren">
+          <label class="form-check-label" data-i18n="reg.inputValidieren_label" for="validieren"><?= $i18n->reg->inputValidieren_label ?></label>
+          <div class="valid-feedback" data-i18n="akzeptiert"><?= $i18n->akzeptiert ?></div>
+        </div>
+      </div>
+    <?php } ?>
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>

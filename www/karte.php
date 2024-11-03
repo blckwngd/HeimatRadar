@@ -1,4 +1,11 @@
-<?php $printView = isset($_GET["print"]) ?>
+<?php
+
+  include_once("config/config.php");
+
+  $printView = isset($_GET["print"]);
+  $i18n = json_decode(file_get_contents("i18n/de.json"));
+  $isLoggedIn = ($_SESSION["API_SECRET"] == API_SECRET);
+?>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -46,8 +53,8 @@
   </head>
   <body>
     <div id="title">
-      <h1>Willkommen beim Hof- und Gartenflohmarkt</h1>
-      <h2>am 02.09.2023, 9-16 Uhr, in ganz Heimbach-Weis</h2>
+      <h1><?= $i18n->karte->titel ?></h1>
+      <h2><?= $i18n->karte->untertitel ?></h2>
     </div>
     <div id="summary"></div><br/>
     <div id="map"></div>

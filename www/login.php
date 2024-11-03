@@ -4,6 +4,8 @@ include_once("config/config.php");
 
 $i18n = json_decode(file_get_contents("i18n/de.json"));
 
+$isLoggedIn = ($_SESSION["API_SECRET"] == API_SECRET);
+
 $msg = "";
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
@@ -56,7 +58,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 <h2 data-i18n="login.titel"><?= $i18n->login->titel ?></h2>
 <?php
     if (!empty($msg)) {
-        echo "<h3>" . $msg . "</h3>";
+        echo "<h3 style=\"color:red;\">" . $msg . "</h3>";
     }
 ?>
 
