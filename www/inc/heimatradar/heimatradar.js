@@ -11,13 +11,15 @@ async function highlightStand() {
 }
 
 async function updateTable(staende) {
+  console.log(staende);
   var el = document.getElementById("tableContent");
   var numStaende = 0;
-  if (typeof staende[0] != "object") // nur ein Element, kein Array
+  // if (typeof staende[0] != "object") // nur ein Element, kein Array
+  if (!Array.isArray(staende)) // nur ein Element, kein Array
     staende = [staende];
   for (var i in staende) {
     var stand = staende[i];
-    numStaende += parseInt(stand.anzahl);
+    numStaende += parseInt(stand.anzahl) || 0;
     var link = printView ? '' : `<br/>(<a href="bingmaps:?cp=${stand.strasse}, 56566 Neuwied" target="_blank"><a href="https://maps.apple.com/maps?q=${stand.strasse}, 56566 Neuwied" target="_blank">In Maps öffnen</a></a>)`;
     var found = false;
     var elStand = document.getElementById("stand" + stand.id);
@@ -57,6 +59,7 @@ async function updateTable(staende) {
   } else {
     elSum.innerHTML = "Es sind bereits <b>" + numStaende + "</b> Stände an <b>" + staende.length + "</b> Standorten registriert! (<a href=\"?print\">Druckversion</a>) (<a href=\"#\" onclick=\"toggleFullscreen()\">Vollbild</a>)"
   }
+  
 }
 
 async function updateMap(map, staende) {
@@ -96,7 +99,7 @@ async function updateMap(map, staende) {
 }
 
 async function updateData(map) {
-  let Response = await fetch('/api.php/');
+  let Response = await fetch('/staende.php/');
   let staende = await Response.json();
   updateMap(map, staende);
   updateTable(staende);

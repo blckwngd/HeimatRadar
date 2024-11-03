@@ -1,10 +1,13 @@
 <?php
 
-  include_once("config/config.php");
+  require_once("config/config.php");
+  require_once("staende.php");
+
+  global $i18n, $isLoggedIn;
 
   $printView = isset($_GET["print"]);
-  $i18n = json_decode(file_get_contents("i18n/de.json"));
-  $isLoggedIn = ($_SESSION["API_SECRET"] == API_SECRET);
+  $staende0 = getStaende();
+
 ?>
 <html>
   <head>
@@ -44,7 +47,7 @@
         extraClasses: 'big'
       });
 
-      var staende0 = []; //<?php /*include "orte.php";*/ ?>;
+      var staende0 = <?= $staende0 ?>;
       var printView = <?php echo ($printView ? 'true' : 'false'); ?>;
 
       window.onload = initHeimatRadar;

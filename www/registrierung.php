@@ -1,9 +1,7 @@
 <?php
     include_once("config/config.php");
 
-    $i18n = json_decode(file_get_contents("i18n/de.json"));
-
-    $isLoggedIn = ($_SESSION["API_SECRET"] == API_SECRET);
+    global $i18n, $isLoggedIn;
 
 ?><!DOCTYPE html>
 <html lang="de">

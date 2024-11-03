@@ -52,6 +52,11 @@
       die("Connection failed: " . $e->getMessage());
   }
 
+  $i18n = json_decode(file_get_contents("i18n/de.json"));
+  
   session_start();
+  $isLoggedIn = ((isset($_SESSION["API_SECRET"])) && $_SESSION["API_SECRET"] == API_SECRET);
+
+  define("HEIMATRADAR_INITIALIZED", true);
 
 ?>
