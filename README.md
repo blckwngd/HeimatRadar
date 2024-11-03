@@ -6,6 +6,11 @@ Dieses Tool dient der Verwaltung und Organisation von dezentralen Hof- und Garte
 
 Durch die teilautomatisierte Verwaltung reduziert das Tool den Arbeitsaufwand für die ehrenamtlichen Organisatorinnen und Organisatoren erheblich.
 
+## STATUS
+
+Die Software befindet sich in der Überarbeitung und Erweiterung. Der aktuelle Stand im Repository ist *nicht* lauffähig.
+Bis zur ersten voll lauffähigen Version dient der Code dazu, den Fortschritt des Projekts zu verfolgen und zu dokumentieren.
+
 ### Funktionsumfang (in Entwicklung)
 
 - **Teilnehmerregistrierung**: Einfache Registrierung für teilnehmende Haushalte.
