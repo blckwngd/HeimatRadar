@@ -67,5 +67,7 @@
 
     "sprache": "Language",
     "akzeptiert": "accepted",
-    "pflichtfeld": "mandantory field"
+    "pflichtfeld": "mandantory field",
+    "loggedIn": "logged in",
+    "logout": "log out"
 }

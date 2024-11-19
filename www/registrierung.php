@@ -22,29 +22,9 @@
 
 <div class="container mt-5">
 
-<!-- Sprach Auswahl -->
-<div class="row">
-  <div class="col-sm-6"></div>
-  <div class="col-sm-3">
-    <div class="input-group mb-4">
-      <label class="input-group-text" for="languageSelect" data-i18n="sprache">Sprache</label>
-      <select class="form-select" id="languageSelect">
-        <?php
-          foreach ($languages as $k => $l) {
-            $first = ($k == array_keys($languages)[0]);
-            echo "<option value=\"$k\"" . ($first ? " selected" : "") . ">$l</option>\r\n";
-          }
-        ?>
-      </select>
-    </div>
-  </div>
-</div>
+<?php require_once("modules/header.php"); ?>
 
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
-
-  <?php if ($isLoggedIn) { ?>
-    <div><i>Sie sind eingeloggt</i></div>
-  <?php } ?>
 
   <form action="staende.php" class="needs-validation" method="post" id="registrationForm" novalidate>
 
@@ -99,7 +79,7 @@
     <div>&nbsp;</div>
     <div class="row">
       <div class="col-sm-8">
-        <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot:</label>
+        <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot</label>:
         <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="(optional) was bietest du an?" name="angebot" maxlength="200"></textarea>
         <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">max. 200 Zeichen</div>
       </div>
@@ -163,6 +143,7 @@
     </p>
   </form>
   
+</div>
 
 </div>
 

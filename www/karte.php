@@ -9,6 +9,7 @@
   $staende0 = getStaende();
 
 ?>
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -55,6 +56,7 @@
 
   </head>
   <body>
+    <?php include_once("modules/header.php"); ?>
     <div id="title">
       <h1><?= $i18n->karte->titel ?></h1>
       <h2><?= $i18n->karte->untertitel ?></h2>
@@ -68,9 +70,19 @@
       <table>
         <thead>
           <tr>
-            <th style="width:170pt;">Adresse</th>
-            <th><center><small>Zahl d. Stände</small></center></th>
-            <th>Angebot</th>
+<?php if ($isLoggedIn) { /* logged in: */?>
+            <th data-i18n="reg.inputName_label"><?= $i18n->reg->inputName_label ?></th>
+            <th data-i18n="reg.inputEmail_label"><?= $i18n->reg->inputEmail_label ?></th>
+            <th data-i18n="reg.inputPhone_label"><?= $i18n->reg->inputPhone_label ?></th>
+<?php } /* not logged in: */ ?>
+            <th style="width:170pt;" data-i18n="reg.inputStrasse_label"><?= $i18n->reg->inputStrasse_label ?></th>
+            <th style="width:40pt;" data-i18n="reg.inputHausnummer_label"><?= $i18n->reg->inputHausnummer_label ?></th>
+            <th><center><small data-i18n="reg.inputAnzahl_label"><?= $i18n->reg->inputAnzahl_label ?></small></center></th>
+            <th data-i18n="reg.inputAngebot_label"><?= $i18n->reg->inputAngebot_label ?></th>
+
+<?php if ($isLoggedIn) { /* logged in: */?>
+            <th data-i18n="reg.inputKommentar_label"><?= $i18n->reg->inputKommentar_label ?></th>
+<?php } ?>
           </tr>
         </thead>
         <tbody id="tableContent">
