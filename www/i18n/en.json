@@ -52,7 +52,10 @@
     
     "karte": {
         "titel": "Welcome to the yard flea market",
-        "untertitel": "on Sept 2nd, 9am to 4pm, all over Heimbach-Weis"
+        "untertitel": "on June 28, 9am to 4pm, all over Heimbach-Weis",
+        "inputAktionen_label": "Actions",
+        "inputVerify_label": "verify",
+        "inputDelete_label": "delete"
     },
     
     "login": {

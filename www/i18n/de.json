@@ -50,7 +50,10 @@
 
     "karte": {
         "titel": "Willkommen beim Hof- und Gartenflohmarkt",
-        "untertitel": "am 02.09.2023, 9-16 Uhr, in ganz Heimbach-Weis"
+        "untertitel": "am 28.06.2025, 9-16 Uhr, in ganz Heimbach-Weis",
+        "inputAktionen_label": "Aktionen",
+        "inputVerify_label": "Verifizieren",
+        "inputDelete_label": "Löschen"
     },
     
     "login": {

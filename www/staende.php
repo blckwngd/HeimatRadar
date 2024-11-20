@@ -64,8 +64,8 @@ function geocode($address){
 function getStaende() {
   global $isLoggedIn, $pdo;
   $sql = $isLoggedIn
-    ? "select id,name,email,telefon,lat,lon,strasse,anzahl,angebot,kommentar,wannValidiert,wannErstellt from heimatradar order by strasse ASC"
-    : "select id,lat,lon,strasse,anzahl,angebot from heimatradar where wannValidiert IS NOT NULL order by strasse ASC";
+    ? "select id,name,email,telefon,lat,lon,strasse,hausnummer,anzahl,angebot,kommentar,wannValidiert,wannErstellt from heimatradar order by strasse ASC"
+    : "select id,lat,lon,strasse,hausnummer,anzahl,angebot from heimatradar where wannValidiert IS NOT NULL order by strasse ASC";
     $stmt = $pdo->prepare($sql);
   $stmt->execute();
   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

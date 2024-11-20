@@ -13,7 +13,11 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Karte</title>
+    <title data-i18n="karte.titel"><?= $i18n->karte->titel ?></title>
+    
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
     
     <!-- LeafletJS | https://leafletjs.com/ -->  
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
@@ -50,44 +54,64 @@
 
       var staende0 = <?= $staende0 ?>;
       var printView = <?php echo ($printView ? 'true' : 'false'); ?>;
+      var isLoggedIn = <?php echo ($isLoggedIn ? 'true' : 'false'); ?>;
 
       window.onload = initHeimatRadar;
     </script>
 
   </head>
   <body>
-    <?php include_once("modules/header.php"); ?>
-    <div id="title">
-      <h1><?= $i18n->karte->titel ?></h1>
-      <h2><?= $i18n->karte->untertitel ?></h2>
+    
+    <div class="container mt-5">
+
+      <?php include_once("modules/header.php"); ?>
+      <div id="title">
+        <h1 data-i18n="karte.titel"><?= $i18n->karte->titel ?></h1>
+        <h2 data-i18n="karte.untertitel"><?= $i18n->karte->untertitel ?></h2>
+        <br/>
+      </div>
+
+      <div id="summary"></div><br/>
     </div>
-    <div id="summary"></div><br/>
+
     <div id="map"></div>
     <?php if($printView) {?><div id="qr"><img src="/qrcode_karte.png"></div> <?php } ?>
-    <?php 
-      if(!$printView) { ?><br/><div>Tipp: Um die Tabelle zu durchsuchen, nutzen Sie die Suchfunktion Ihres Browsers</div><?php } ?>
-    <div id="table">
-      <table>
-        <thead>
-          <tr>
-<?php if ($isLoggedIn) { /* logged in: */?>
-            <th data-i18n="reg.inputName_label"><?= $i18n->reg->inputName_label ?></th>
-            <th data-i18n="reg.inputEmail_label"><?= $i18n->reg->inputEmail_label ?></th>
-            <th data-i18n="reg.inputPhone_label"><?= $i18n->reg->inputPhone_label ?></th>
-<?php } /* not logged in: */ ?>
-            <th style="width:170pt;" data-i18n="reg.inputStrasse_label"><?= $i18n->reg->inputStrasse_label ?></th>
-            <th style="width:40pt;" data-i18n="reg.inputHausnummer_label"><?= $i18n->reg->inputHausnummer_label ?></th>
-            <th><center><small data-i18n="reg.inputAnzahl_label"><?= $i18n->reg->inputAnzahl_label ?></small></center></th>
-            <th data-i18n="reg.inputAngebot_label"><?= $i18n->reg->inputAngebot_label ?></th>
+    
+    
+    <div class="container mt-5">
+      
+      <?php if(!$printView) { ?>
+        <br/><i>Tipp: Um die Tabelle zu durchsuchen, nutzen Sie die Suchfunktion Ihres Browsers</i>
+      <?php } ?>
 
-<?php if ($isLoggedIn) { /* logged in: */?>
-            <th data-i18n="reg.inputKommentar_label"><?= $i18n->reg->inputKommentar_label ?></th>
-<?php } ?>
-          </tr>
-        </thead>
-        <tbody id="tableContent">
-        </tbody>
-      </table>
+      <div id="table">
+        <table>
+          <thead>
+            <tr>
+  <?php if ($isLoggedIn && !$printView) { /* logged in: */?>
+              <th data-i18n="reg.inputName_label"><?= $i18n->reg->inputName_label ?></th>
+              <th data-i18n="reg.inputEmail_label"><?= $i18n->reg->inputEmail_label ?></th>
+              <th data-i18n="reg.inputPhone_label"><?= $i18n->reg->inputPhone_label ?></th>
+  <?php } /* not logged in: */ ?>
+              <th style="width:170pt;" data-i18n="reg.inputStrasse_label"><?= $i18n->reg->inputStrasse_label ?></th>
+              <th style="width:80px;"><center><small data-i18n="reg.inputAnzahl_label"><?= $i18n->reg->inputAnzahl_label ?></small></center></th>
+              <th data-i18n="reg.inputAngebot_label"><?= $i18n->reg->inputAngebot_label ?></th>
+
+  <?php if ($isLoggedIn && !$printView) { /* logged in: */?>
+              <th data-i18n="reg.inputKommentar_label"><?= $i18n->reg->inputKommentar_label ?></th>
+              <th data-i18n="karte.inputAktionen_label"><?= $i18n->karte->inputAktionen_label ?></th>
+  <?php } ?>
+            </tr>
+          </thead>
+          <tbody id="tableContent">
+          </tbody>
+        </table>
+      </div>
     </div>
   </body>
+
+  <!-- Translation Modul von https://codeburst.io/translating-your-website-in-pure-javascript-98b9fa4ce427 -->
+  <script src="https://unpkg.com/@andreasremdt/simple-translator@latest/dist/umd/translator.min.js"></script>
+  <script src="inc/i18n.js"></script>
+
 </html>

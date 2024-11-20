@@ -1,6 +1,6 @@
 <!-- Sprach Auswahl -->
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-8">
     <?php if ($isLoggedIn) { ?>
         <span data-i18n="loggedIn"><?= $i18n->loggedIn ?></span> (<a href="logout.php"><span data-i18n="logOut"><?= $i18n->logout ?></span></a>)
     <?php } ?>
