@@ -1,5 +1,6 @@
 {
     "reg": {
+        "bezeichnung": "Teilnehmen",
         "titel": "Teilnahme am Hof- und Gartenflohmarkt am 07. Juni 2024",
         "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
         
@@ -49,6 +50,7 @@
     },
 
     "karte": {
+        "bezeichnung": "Karte",
         "titel": "Willkommen beim Hof- und Gartenflohmarkt",
         "untertitel": "am 28.06.2025, 9-16 Uhr, in ganz Heimbach-Weis",
         "inputAktionen_label": "Aktionen",
@@ -57,6 +59,7 @@
     },
     
     "login": {
+        "bezeichnung": "Einloggen",
         "titel": "Login for administration",
         "inputUsername_label": "Benutzername",
         "inputUsername_platzhalter": "",

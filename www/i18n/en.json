@@ -1,5 +1,6 @@
 {
     "reg": {
+        "bezeichnung": "Participate",
         "titel": "Participation at Hof- und Gartenflohmarkt on 06. Juni 2024",
 
         "hinweis_ort": "ATTENTION: market stalls must be on your own property. Pavement, street or the like are not permitted.",
@@ -51,6 +52,7 @@
     },
     
     "karte": {
+        "bezeichnung": "Map",
         "titel": "Welcome to the yard flea market",
         "untertitel": "on June 28, 9am to 4pm, all over Heimbach-Weis",
         "inputAktionen_label": "Actions",
@@ -59,6 +61,7 @@
     },
     
     "login": {
+        "bezeichnung": "Login",
         "titel": "Einloggen zum Verwalten",
         "inputUsername_label": "Username",
         "inputUsername_platzhalter": "",
