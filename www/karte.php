@@ -8,10 +8,10 @@
   $printView = isset($_GET["print"]);
   $staende0 = getStaende();
 
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
   <head>
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title data-i18n="karte.titel"><?= $i18n->karte->titel ?></title>
     
