@@ -11,13 +11,15 @@ async function highlightStand() {
 }
 
 async function updateTable(staende) {
+  console.log(staende);
   var el = document.getElementById("tableContent");
   var numStaende = 0;
-  if (typeof staende[0] != "object") // nur ein Element, kein Array
+  // if (typeof staende[0] != "object") // nur ein Element, kein Array
+  if (!Array.isArray(staende)) // nur ein Element, kein Array
     staende = [staende];
   for (var i in staende) {
     var stand = staende[i];
-    numStaende += parseInt(stand.anzahl);
+    numStaende += parseInt(stand.anzahl) || 0;
     var link = printView ? '' : `<br/>(<a href="bingmaps:?cp=${stand.strasse}, 56566 Neuwied" target="_blank"><a href="https://maps.apple.com/maps?q=${stand.strasse}, 56566 Neuwied" target="_blank">In Maps öffnen</a></a>)`;
     var found = false;
     var elStand = document.getElementById("stand" + stand.id);
@@ -25,25 +27,63 @@ async function updateTable(staende) {
       // update table element
       var els = elStand.getElementsByTagName("td");
       var addr = stand.strasse + ", 56566 Neuwied";
-      els[0].innerHTML = `${stand.strasse}${link}`;
-      els[1].innerHTML = stand.anzahl;
-      els[2].innerHTML = stand.angebot;
+      if (isLoggedIn) {
+        els[0].innerHTML = stand.name || '-';
+        els[1].innerHTML = stand.email || '-';
+        els[2].innerHTML = stand.telefon || '-';
+        els[3].innerHTML = `${stand.strasse} ${stand.hausnummer}${link}`;
+        els[4].innerHTML = stand.anzahl || '-';
+        els[5].innerHTML = stand.angebot || '-';
+      } else {
+        els[0].innerHTML = `${stand.strasse}${link}`;
+        els[1].innerHTML = stand.anzahl || '-';
+        els[2].innerHTML = stand.angebot || '-';
+      }
     } else {
       // create new table element
       var elStand = document.createElement("tr");
       elStand.id = "stand" + stand.id;
-      var e1 = document.createElement("td");
-      e1.innerHTML = `${stand.strasse}${link}`;
-      elStand.appendChild(e1);
+
+      if (isLoggedIn && !printView) {
+        var eName = document.createElement("td");
+        eName.innerHTML = `${stand.name}` || '-';
+        elStand.appendChild(eName);
+        
+        var eEmail = document.createElement("td");
+        eEmail.innerHTML = `${stand.email}` || '-';
+        elStand.appendChild(eEmail);
+        
+        var eTelefon = document.createElement("td");
+        eTelefon.innerHTML = `${stand.telefon}` || '-';
+        elStand.appendChild(eTelefon);
+      }
+
+      var eAdresse = document.createElement("td");
+      eAdresse.innerHTML = `${stand.strasse} ${stand.hausnummer}${link}`;
+      elStand.appendChild(eAdresse);
       
-      var e3 = document.createElement("td");
-      e3.innerHTML = `${stand.anzahl}`;
-      e3.style.textAlign = 'center'
-      elStand.appendChild(e3);
+      var eAnzahl = document.createElement("td");
+      eAnzahl.innerHTML = `${stand.anzahl}`;
+      eAnzahl.style.textAlign = 'center'
+      elStand.appendChild(eAnzahl);
       
-      var e2 = document.createElement("td");
-      e2.innerHTML = stand.angebot;
-      elStand.appendChild(e2);
+      var eAngebot = document.createElement("td");
+      eAngebot.innerHTML = stand.angebot || '-';
+      elStand.appendChild(eAngebot);
+
+      if (isLoggedIn && !printView) {
+        var eKommentar = document.createElement("td");
+        eKommentar.innerHTML = stand.kommentar || '-';
+        elStand.appendChild(eKommentar);
+
+        
+        var eAktionen = document.createElement("td");
+        eAktionen.innerHTML  = `<button type="button" class="btn btn-success" onClick="verify(${stand.id})" title="verify" data-i18n="karte.inputVerify_label">verify</button>`;
+        eAktionen.innerHTML += `<button type="button" class="btn btn-danger" onClick="delete(${stand.id})" title="delete" data-i18n="karte.inputDelete_label">delete</button>`;
+        elStand.appendChild(eAktionen);
+        
+      }
+
       elStand.originalId = stand.id;
       if (!printView) {
         elStand.addEventListener("mouseover", highlightStand);
@@ -57,6 +97,7 @@ async function updateTable(staende) {
   } else {
     elSum.innerHTML = "Es sind bereits <b>" + numStaende + "</b> Stände an <b>" + staende.length + "</b> Standorten registriert! (<a href=\"?print\">Druckversion</a>) (<a href=\"#\" onclick=\"toggleFullscreen()\">Vollbild</a>)"
   }
+  
 }
 
 async function updateMap(map, staende) {
@@ -96,7 +137,7 @@ async function updateMap(map, staende) {
 }
 
 async function updateData(map) {
-  let Response = await fetch('/api.php/');
+  let Response = await fetch('/staende.php/');
   let staende = await Response.json();
   updateMap(map, staende);
   updateTable(staende);

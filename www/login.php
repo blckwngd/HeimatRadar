@@ -2,7 +2,7 @@
 
 include_once("config/config.php");
 
-$i18n = json_decode(file_get_contents("i18n/de.json"));
+global $i18n, $isLoggedIn;
 
 $msg = "";
 
@@ -56,7 +56,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 <h2 data-i18n="login.titel"><?= $i18n->login->titel ?></h2>
 <?php
     if (!empty($msg)) {
-        echo "<h3>" . $msg . "</h3>";
+        echo "<h3 style=\"color:red;\">" . $msg . "</h3>";
     }
 ?>
 
@@ -72,7 +72,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
   
   <div class="col-sm-4">
     <label for="name" data-i18n="login.inputPassword_label" class="form-label"><?= $i18n->login->inputPassword_label ?></label>:
-    <input type="text" class="form-control" id="password" placeholder="<?= $i18n->login->inputPassword_platzhalter ?>" data-i18n="login.inputPassword_platzhalter" data-i18n-attr="placeholder" name="password"/>
+    <input type="password" class="form-control" id="password" placeholder="<?= $i18n->login->inputPassword_platzhalter ?>" data-i18n="login.inputPassword_platzhalter" data-i18n-attr="placeholder" name="password"/>
     <div class="invalid-feedback" data-i18n="login.inputPassword_hinweisUngueltig"><?= $i18n->login->inputPassword_hinweisUngueltig ?></div>
   </div>
 </div>

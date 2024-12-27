@@ -9,7 +9,7 @@ var translator = new Translator({
   selector: "[data-i18n]",
   debug: false,
   registerGlobally: "__",
-  persist: false,
+  persist: true,
   persistKey: "preferred_language",
   filesLocation: "/i18n"
 });

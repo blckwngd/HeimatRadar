@@ -1,5 +1,6 @@
 {
     "reg": {
+        "bezeichnung": "Teilnehmen",
         "titel": "Teilnahme am Hof- und Gartenflohmarkt am 07. Juni 2024",
         "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
         
@@ -23,6 +24,11 @@
         "inputPhone_platzhalter": "(optional, wird nicht veröffentlicht)",
         "inputPhone_hinweisUngueltig": "Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.",
         
+        "inputAnzahl_label": "Zahl der Stände",
+        "inputAnzahl_platzhalter": "1",
+        "inputAnzahl_hinweisUngueltig": "Bitte geben Sie eine Zahl zwischen 1 und 10 ein",
+        "inputAnzahl_hinweis": "Wie viele Haushalte werden an dieser Adresse teilnehmen?",
+        
         "inputAngebot_label": "Angebot",
         "inputAngebot_platzhalter": "(optional) was bietest du an?",
         "inputAngebot_hinweisUngueltig": "max. 200 Zeichen",
@@ -33,6 +39,7 @@
 
         "inputTeilnahme_label": "Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.",
         "inputDatenschutz_label": "Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.",
+        "inputValidieren_label": "Eintrag sofort validieren.",
 
         "hinweis_allgemein_titel": "ALLGEMEINE HINWEISE",
         "hinweis_allgemein": "<p>Es sind <strong>ausschließlich private Angebote</strong> erlaubt. Gewerbliche Anbieter sind von der Teilnahme ausgeschlossen.</p><p>Sollten <strong>nachträglich Anderungen</strong> am Eintrag gewünscht sein, gib uns bitte kurz per <a href=\"mailto:info@rethink-ev.de\">Mail</a> oder telefonisch unter 02622/902787 Bescheid.</p>",
@@ -41,8 +48,18 @@
 
         "jetztTeilnehmen": "JETZT TEILNEHMEN"
     },
+
+    "karte": {
+        "bezeichnung": "Karte",
+        "titel": "Willkommen beim Hof- und Gartenflohmarkt",
+        "untertitel": "am 28.06.2025, 9-16 Uhr, in ganz Heimbach-Weis",
+        "inputAktionen_label": "Aktionen",
+        "inputVerify_label": "Verifizieren",
+        "inputDelete_label": "Löschen"
+    },
     
     "login": {
+        "bezeichnung": "Einloggen",
         "titel": "Login for administration",
         "inputUsername_label": "Benutzername",
         "inputUsername_platzhalter": "",
@@ -54,5 +71,7 @@
 
     "sprache": "Sprache",
     "akzeptiert": "Akzeptiert",
-    "pflichtfeld": "Pflichtfeld"
+    "pflichtfeld": "Pflichtfeld",
+    "loggedIn": "Du bist eingeloggt",
+    "logout": "ausloggen"
 }

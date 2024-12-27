@@ -4,7 +4,7 @@ body {
 }
 #map { 
   height: 75%;
-  width: 100%;
+  width: 92%;
   margin: 0 auto; 
 }
 #qr {
@@ -52,4 +52,8 @@ input:invalid {
 
 input:valid {
   border: 2px solid green;
+}
+
+.adminFeature {
+  color: darkgreen;
 }
