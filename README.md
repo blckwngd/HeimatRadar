@@ -6,6 +6,11 @@ Dieses Tool dient der Verwaltung und Organisation von dezentralen Hof- und Garte
 
 Durch die teilautomatisierte Verwaltung reduziert das Tool den Arbeitsaufwand für die ehrenamtlichen Organisatorinnen und Organisatoren erheblich.
 
+## STATUS
+
+Die Software befindet sich in der Überarbeitung und Erweiterung. Der aktuelle Stand im Repository ist *nicht* lauffähig.
+Bis zur ersten voll lauffähigen Version dient der Code dazu, den Fortschritt des Projekts zu verfolgen und zu dokumentieren.
+
 ### Funktionsumfang (in Entwicklung)
 
 - **Teilnehmerregistrierung**: Einfache Registrierung für teilnehmende Haushalte.
@@ -26,7 +31,8 @@ Durch die teilautomatisierte Verwaltung reduziert das Tool den Arbeitsaufwand f�
    Alle Texte sind im Verzeichnis www/i18n/ definiert. Dort können Inhalte und Übersetzungen an die jeweiligen Anforderungen angepasst werden.
 
 3. Anpassen der Konfiguration
-   passe die Datenbankverbindung unter www\config\config.php an
+   Benenne die Datei www\config\config.example.php in config.php um (oder kopiere sie).
+   Passe die Datenbankverbindung und alle weiteren Optionen in der config.php an.
 
 4. Erstellen der MySQL-Tabelle
    Rufe das MySQL-Verwaltungswerkzeug deiner Wahl auf (z.B. phpMyAdmin) und importiere die Datei sql\schema.sql

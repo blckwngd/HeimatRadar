@@ -1,17 +1,36 @@
 <?php
     include_once("config/config.php");
 
-    $i18n = json_decode(file_get_contents("i18n/de.json"));
+    global $i18n, $isLoggedIn;
 
 ?><!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
 
+    <!-- LeafletJS | https://leafletjs.com/ -->  
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+
+    <!-- LeafletJS Extra Markers | -->
+    <link rel="stylesheet" href="https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/css/leaflet.extra-markers.min.css" />
+    <script src='https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/js/leaflet.extra-markers.min.js'></script>
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
+
+    <!-- Fullscreen AddIn | https://github.com/Leaflet/Leaflet.fullscreen -->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+  
+    <!-- GPS AddIn | https://github.com/stefanocudini/leaflet-gps -->
+    <script src='/inc/leaflet-gps/leaflet-gps.min.js'></script>
+    <link href='/inc/leaflet-gps/leaflet-gps.min.css' rel='stylesheet' />
+    
   <!-- HeimatRadar -->
   <link href='/inc/heimatradar/heimatradar.css' rel='stylesheet' />
   <script src='/inc/heimatradar/heimatradar.js'></script>
@@ -22,27 +41,11 @@
 
 <div class="container mt-5">
 
-<!-- Sprach Auswahl -->
-<div class="row">
-  <div class="col-sm-6"></div>
-  <div class="col-sm-3">
-    <div class="input-group mb-4">
-      <label class="input-group-text" for="languageSelect" data-i18n="sprache">Sprache</label>
-      <select class="form-select" id="languageSelect">
-        <?php
-          foreach ($languages as $k => $l) {
-            $first = ($k == array_keys($languages)[0]);
-            echo "<option value=\"$k\"" . ($first ? " selected" : "") . ">$l</option>\r\n";
-          }
-        ?>
-      </select>
-    </div>
-  </div>
-</div>
+<?php require_once("modules/header.php"); ?>
 
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
-  <form action="/" class="needs-validation" novalidate>
+  <form action="staende.php" class="needs-validation" method="post" id="registrationForm" novalidate>
 
     <div class="row">
       <div class="col-sm-8">
@@ -69,14 +72,25 @@
     
     <div>&nbsp;</div>
     <div class="row">
+      <div class="col-sm-3">
+        *<label for="anzahl" class="form-label" data-i18n="reg.inputAnzahl_label">Anzahl</label>:
+        <input type="number" value="1" class="form-control" id="anzahl" placeholder="1" min="1" max="10" data-i18n="reg.inputAnzahl_platzhalter" data-i18n-attr="placeholder" name="anzahl" required>
+        <div class="invalid-feedback" data-i18n="reg.inputAnzahl_hinweisUngueltig"><?= $i18n->reg->inputAnzahl_hinweisUngueltig ?></div>
+      </div>
+      <div class="col-sm-5"></div>
+    </div>
+    <span data-i18n="reg.inputAnzahl_hinweis"><?= $i18n->reg->inputAnzahl_hinweis ?></span>
+
+    <div>&nbsp;</div>
+    <div class="row">
       <div class="col-sm-4">
         <label for="email" data-i18n="reg.inputEmail_label" class="form-label">Email</label>:
         <input data-i18n="reg.inputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
         <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
       </div>
       <div class="col-sm-4">
-        <label for="tel" data-i18n="reg.inputPhone_label" class="form-label">Telefon</label>:
-        <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="tel" placeholder="optional, wird nicht veröffentlicht" name="tel">
+        <label for="phone" data-i18n="reg.inputPhone_label" class="form-label">Telefon</label>:
+        <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="phone" placeholder="optional, wird nicht veröffentlicht" name="phone">
         <div class="invalid-feedback" data-i18n="reg.inputPhone_hinweisUngueltig">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
       </div>
     </div>
@@ -84,7 +98,7 @@
     <div>&nbsp;</div>
     <div class="row">
       <div class="col-sm-8">
-        <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot:</label>
+        <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot</label>:
         <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="(optional) was bietest du an?" name="angebot" maxlength="200"></textarea>
         <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">max. 200 Zeichen</div>
       </div>
@@ -113,10 +127,21 @@
       <div class="col-sm-8">
         <input class="form-check-input" type="checkbox" id="datenschutz" name="datenschutz" required>
         <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
-        <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
-        <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
+        <div class="valid-feedback" data-i18n="akzeptiert"><?= $i18n->akzeptiert ?></div>
+        <div class="invalid-feedback" data-i18n="pflichtfeld"><?= $i18n->pflichtfeld ?></div>
       </div>
     </div>
+
+    
+    <?php if ($isLoggedIn) { ?>
+      <div class="row adminFeature">
+        <div class="col-sm-8">
+          <input class="form-check-input" type="checkbox" id="validieren" name="validieren">
+          <label class="form-check-label" data-i18n="reg.inputValidieren_label" for="validieren"><?= $i18n->reg->inputValidieren_label ?></label>
+          <div class="valid-feedback" data-i18n="akzeptiert"><?= $i18n->akzeptiert ?></div>
+        </div>
+      </div>
+    <?php } ?>
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>
@@ -137,6 +162,7 @@
     </p>
   </form>
   
+</div>
 
 </div>
 
@@ -165,5 +191,29 @@
 <script src="https://unpkg.com/@andreasremdt/simple-translator@latest/dist/umd/translator.min.js"></script>
 <script src="inc/i18n.js"></script>
 
+<script type="text/javascript">
+
+  var form = document.getElementById('registrationForm');
+
+  function processForm(e) {
+      
+      if (form.checkValidity() === false) {
+        alert('invalid');
+        if (e.preventDefault) e.preventDefault();
+      } else {
+        alert('valid');
+      }
+      form.classList.add('was-validated');
+
+      return false;
+  }
+
+  if (form.attachEvent) {
+      form.attachEvent("submit", processForm);
+  } else {
+      form.addEventListener("submit", processForm);
+  }
+
+</script>
 </body>
 </html>
