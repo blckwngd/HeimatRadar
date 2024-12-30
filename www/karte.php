@@ -6,7 +6,7 @@
   global $i18n, $isLoggedIn;
 
   $printView = isset($_GET["print"]);
-  $staende0 = getStaende();
+  $staende0 = json_encode(getStaende());
 
 ?><!DOCTYPE html>
 <html>
