@@ -24,6 +24,9 @@ if ($isApiAccess) {
       case 'PUT':
           handlePut($input);
           break;
+      case 'PATCH':
+          handlePatch($input);
+          break;
       case 'DELETE':
           handleDelete($input);
           break;
@@ -33,7 +36,7 @@ if ($isApiAccess) {
   }
 }
 
-function validateEntry ($id) {
+function verifyEntry ($id) {
   // TODO set to "validated"
   // TODO send confirmation mail
 }
@@ -100,6 +103,47 @@ function handleGet($input) {
     $staende = getStaende();
 
     echo json_encode($staende);
+}
+
+function handlePatch($input) {
+  global $isLoggedIn, $pdo;
+  if (!$isLoggedIn) {
+    echo json_encode([
+      'status' => 'ERROR',
+      'message' => 'not logged in'
+    ]);
+    return;
+  }
+  switch ($input["action"]) {
+    case "verify":
+      $sql = "UPDATE `".MYSQL_TABLE."` SET
+              wannValidiert=NOW()
+            WHERE id=:id";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([
+        'id' => $input["id"]
+      ]);
+
+      echo json_encode([
+        'status' => 'OK',
+        'message' => 'entry validated successfully'
+      ]);
+      break;
+    case "unverify":
+      $sql = "UPDATE `".MYSQL_TABLE."` SET
+              wannValidiert=NULL
+            WHERE id=:id";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([
+        'id' => $input["id"]
+      ]);
+
+      echo json_encode([
+        'status' => 'OK',
+        'message' => 'entry withdrawn successfully'
+      ]);
+      break;
+  }
 }
 
 function handlePost($input) {
@@ -224,7 +268,7 @@ function handlePost($input) {
       'kommentar' => $input['kommentar'],
       'token' => $token
     ]);
-    if ($isLoggedIn && ($input["validieren"] == "on")) {
+    if ($isLoggedIn && isset($input["validieren"]) && ($input["validieren"] == "on")) {
       return validateEntry($pdo->lastInsertId());
     }
 
