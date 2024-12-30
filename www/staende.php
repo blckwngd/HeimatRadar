@@ -68,12 +68,38 @@ function getStaende() {
     : "select id,lat,lon,strasse,hausnummer,anzahl,angebot from heimatradar where wannValidiert IS NOT NULL order by strasse ASC";
     $stmt = $pdo->prepare($sql);
   $stmt->execute();
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return json_encode($result);
+  $staende = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if ($isLoggedIn) {
+    // fehlende Geokodierung ergänzen
+    foreach ($staende as $i => $stand) {
+      if (empty($stand["lat"]) || empty($stand["lon"])) {
+        $address = $stand["strasse"] . " " . $stand["hausnummer"] . ", " . POSTLEITZAHL . " " . ORT;
+        $result = geocode($address);
+        if ($result[0] == "OK") {
+          $sql = "UPDATE `".MYSQL_TABLE."` SET
+            lat=:lat,
+            lon=:lon
+          WHERE id=:id";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute([
+            'lat' => floatval($result[1]),
+            'lon' => floatval($result[2]),
+            'id' => $stand["id"]
+          ]);
+          $staende[$i]["lat"] = floatval($result[1]);
+          $staende[$i]["lon"] = floatval($result[2]);
+        }
+      }
+    }
+  }
+
+  return $staende;
 }
 
 function handleGet($input) {
-    echo getStaende();
+    $staende = getStaende();
+
+    echo json_encode($staende);
 }
 
 function handlePost($input) {
@@ -185,7 +211,6 @@ function handlePost($input) {
       (`name`, `strasse`, `hausnummer`, `telefon`, `email`, `teilnahme`, `datenschutz`, `anzahl`, `angebot`, `kommentar`, `token`) 
       VALUES (:name, :strasse, :hausnummer, :telefon, :email, :teilnahme, :datenschutz, :anzahl, :angebot, :kommentar, :token)";
     $stmt = $pdo->prepare($sql);
-    var_dump($input);
     $stmt->execute([
       'name' => $input['name'],
       'strasse' => $input['strasse'],
