@@ -57,6 +57,7 @@
         "untertitel": "on June 28, 9am to 4pm, all over Heimbach-Weis",
         "inputAktionen_label": "Actions",
         "inputVerify_label": "verify",
+        "inputUnverify_question": "do you want to take this entry offline for maintenance?",
         "inputDelete_label": "delete"
     },
     

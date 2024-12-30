@@ -55,6 +55,7 @@
         "untertitel": "am 28.06.2025, 9-16 Uhr, in ganz Heimbach-Weis",
         "inputAktionen_label": "Aktionen",
         "inputVerify_label": "Verifizieren",
+        "inputUnverify_question": "soll der Eintrag zur Überarbeitung offline genommen werden?",
         "inputDelete_label": "Löschen"
     },
     
