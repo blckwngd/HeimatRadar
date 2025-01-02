@@ -11,13 +11,15 @@
 ?><!DOCTYPE html>
 <html>
   <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title data-i18n="karte.titel"><?= $i18n->karte->titel ?></title>
     
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
     <!-- LeafletJS | https://leafletjs.com/ -->  
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
@@ -61,10 +63,11 @@
 
   </head>
   <body>
-    
-    <div class="container mt-5">
 
       <?php include_once("modules/header.php"); ?>
+
+      <main class="container">
+
       <div id="title">
         <h1 data-i18n="karte.titel"><?= $i18n->karte->titel ?></h1>
         <h2 data-i18n="karte.untertitel"><?= $i18n->karte->untertitel ?></h2>
@@ -72,7 +75,6 @@
       </div>
 
       <div id="summary"></div><br/>
-    </div>
 
     <div id="map"></div>
     <?php if($printView) {?><div id="qr"><img src="/qrcode_karte.png"></div> <?php } ?>
@@ -107,7 +109,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+  </main>
   </body>
 
   <!-- Translation Modul von https://codeburst.io/translating-your-website-in-pure-javascript-98b9fa4ce427 -->
