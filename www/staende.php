@@ -24,6 +24,9 @@ if ($isApiAccess) {
       case 'PUT':
           handlePut($input);
           break;
+      case 'PATCH':
+          handlePatch($input);
+          break;
       case 'DELETE':
           handleDelete($input);
           break;
@@ -33,7 +36,7 @@ if ($isApiAccess) {
   }
 }
 
-function validateEntry ($id) {
+function verifyEntry ($id) {
   // TODO set to "validated"
   // TODO send confirmation mail
 }
@@ -68,12 +71,79 @@ function getStaende() {
     : "select id,lat,lon,strasse,hausnummer,anzahl,angebot from heimatradar where wannValidiert IS NOT NULL order by strasse ASC";
     $stmt = $pdo->prepare($sql);
   $stmt->execute();
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  return json_encode($result);
+  $staende = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  if ($isLoggedIn) {
+    // fehlende Geokodierung ergänzen
+    foreach ($staende as $i => $stand) {
+      if (empty($stand["lat"]) || empty($stand["lon"])) {
+        $address = $stand["strasse"] . " " . $stand["hausnummer"] . ", " . POSTLEITZAHL . " " . ORT;
+        $result = geocode($address);
+        if ($result[0] == "OK") {
+          $sql = "UPDATE `".MYSQL_TABLE."` SET
+            lat=:lat,
+            lon=:lon
+          WHERE id=:id";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute([
+            'lat' => floatval($result[1]),
+            'lon' => floatval($result[2]),
+            'id' => $stand["id"]
+          ]);
+          $staende[$i]["lat"] = floatval($result[1]);
+          $staende[$i]["lon"] = floatval($result[2]);
+        }
+      }
+    }
+  }
+
+  return $staende;
 }
 
 function handleGet($input) {
-    echo getStaende();
+    $staende = getStaende();
+
+    echo json_encode($staende);
+}
+
+function handlePatch($input) {
+  global $isLoggedIn, $pdo;
+  if (!$isLoggedIn) {
+    echo json_encode([
+      'status' => 'ERROR',
+      'message' => 'not logged in'
+    ]);
+    return;
+  }
+  switch ($input["action"]) {
+    case "verify":
+      $sql = "UPDATE `".MYSQL_TABLE."` SET
+              wannValidiert=NOW()
+            WHERE id=:id";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([
+        'id' => $input["id"]
+      ]);
+
+      echo json_encode([
+        'status' => 'OK',
+        'message' => 'entry validated successfully'
+      ]);
+      break;
+    case "unverify":
+      $sql = "UPDATE `".MYSQL_TABLE."` SET
+              wannValidiert=NULL
+            WHERE id=:id";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([
+        'id' => $input["id"]
+      ]);
+
+      echo json_encode([
+        'status' => 'OK',
+        'message' => 'entry withdrawn successfully'
+      ]);
+      break;
+  }
 }
 
 function handlePost($input) {
@@ -185,7 +255,6 @@ function handlePost($input) {
       (`name`, `strasse`, `hausnummer`, `telefon`, `email`, `teilnahme`, `datenschutz`, `anzahl`, `angebot`, `kommentar`, `token`) 
       VALUES (:name, :strasse, :hausnummer, :telefon, :email, :teilnahme, :datenschutz, :anzahl, :angebot, :kommentar, :token)";
     $stmt = $pdo->prepare($sql);
-    var_dump($input);
     $stmt->execute([
       'name' => $input['name'],
       'strasse' => $input['strasse'],
@@ -199,7 +268,7 @@ function handlePost($input) {
       'kommentar' => $input['kommentar'],
       'token' => $token
     ]);
-    if ($isLoggedIn && ($input["validieren"] == "on")) {
+    if ($isLoggedIn && isset($input["validieren"]) && ($input["validieren"] == "on")) {
       return validateEntry($pdo->lastInsertId());
     }
 

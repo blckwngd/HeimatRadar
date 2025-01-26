@@ -10,6 +10,33 @@ async function highlightStand() {
     });
 }
 
+async function verify(id) {
+  var el = document.getElementById("stand"+id);
+  var btns = el.getElementsByTagName("button");
+  var action = "verify";
+  if (btns[0].classList.contains("btn-warning")) {
+    if (!confirm("take down for maintenance?")) {
+      return;
+    }
+    action = "unverify";
+  }
+  let Response = await fetch('/staende.php', {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: id, action: action }),
+  });
+  let result = await Response.json();
+  console.log(result);
+  if (result.status == "OK") {
+    alert(result.message);
+    window.location.reload();
+  } else {
+    alert("ERROR");
+  }
+}
+
 async function updateTable(staende) {
   console.log(staende);
   var el = document.getElementById("tableContent");
@@ -28,7 +55,7 @@ async function updateTable(staende) {
       var els = elStand.getElementsByTagName("td");
       var addr = stand.strasse + ", 56566 Neuwied";
       if (isLoggedIn) {
-        els[0].innerHTML = stand.name || '-';
+        els[0].innerHTML = (stand.name || '-') + (stand.wannValidiert ? " ✔" : " ❓");
         els[1].innerHTML = stand.email || '-';
         els[2].innerHTML = stand.telefon || '-';
         els[3].innerHTML = `${stand.strasse} ${stand.hausnummer}${link}`;
@@ -47,6 +74,7 @@ async function updateTable(staende) {
       if (isLoggedIn && !printView) {
         var eName = document.createElement("td");
         eName.innerHTML = `${stand.name}` || '-';
+        eName.innerHTML += (stand.wannValidiert ? " ✔" : " ❓");
         elStand.appendChild(eName);
         
         var eEmail = document.createElement("td");
@@ -78,7 +106,8 @@ async function updateTable(staende) {
 
         
         var eAktionen = document.createElement("td");
-        eAktionen.innerHTML  = `<button type="button" class="btn btn-success" onClick="verify(${stand.id})" title="verify" data-i18n="karte.inputVerify_label">verify</button>`;
+        var verificationClass = (stand.wannValidiert ? "btn-warning" : "btn-success");
+        eAktionen.innerHTML  = `<button type="button" class="btn ${verificationClass}" onClick="verify(${stand.id})" title="change verification state" data-i18n="karte.inputVerify_label">verify</button>`;
         eAktionen.innerHTML += `<button type="button" class="btn btn-danger" onClick="delete(${stand.id})" title="delete" data-i18n="karte.inputDelete_label">delete</button>`;
         elStand.appendChild(eAktionen);
         
