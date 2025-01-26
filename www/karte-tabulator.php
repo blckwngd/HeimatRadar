@@ -104,9 +104,9 @@ $languages = array(
   </head>
   <body>
 
-      <?php include_once("modules/header.php"); ?>
+      <main class="container">
 
-      <div class="container">
+      <?php include_once("modules/header-pico.php"); ?>
 
       <div id="title">
         <h1 data-i18n="karte.titel"><?= $i18n->karte->titel ?></h1>
@@ -149,7 +149,7 @@ $languages = array(
           </tbody>-->
         </table>
       </div>
-  </div>
+  </main>
   </body>
 
   <!-- Translation Modul von https://codeburst.io/translating-your-website-in-pure-javascript-98b9fa4ce427 -->
