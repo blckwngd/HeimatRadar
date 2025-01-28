@@ -4,58 +4,70 @@
     global $i18n, $isLoggedIn;
 
 ?><!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap -->
-  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
-    <!-- LeafletJS | https://leafletjs.com/ -->  
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <!-- PicoCSS | https://picocss.com/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
-    <!-- LeafletJS Extra Markers | -->
-    <link rel="stylesheet" href="https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/css/leaflet.extra-markers.min.css" />
-    <script src='https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/js/leaflet.extra-markers.min.js'></script>
-
-    <!-- Semantic UI -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
-
-    <!-- Fullscreen AddIn | https://github.com/Leaflet/Leaflet.fullscreen -->
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
-  
-    <!-- GPS AddIn | https://github.com/stefanocudini/leaflet-gps -->
-    <script src='/inc/leaflet-gps/leaflet-gps.min.js'></script>
-    <link href='/inc/leaflet-gps/leaflet-gps.min.css' rel='stylesheet' />
-    
-  <!-- HeimatRadar -->
-  <link href='/inc/heimatradar/heimatradar.css' rel='stylesheet' />
-  <script src='/inc/heimatradar/heimatradar.js'></script>
+    <!-- PocketBase | https://pocketbase.io/ -->
+    <script src="/inc/pocketbase/pocketbase.umd.js"></script>
+      
+    <!-- HeimatRadar -->
+    <link href='/inc/heimatradar/heimatradar.css' rel='stylesheet' />
+    <script src='/inc/heimatradar/heimatradar.js'></script>
   
   <title data-i18n="reg.titel"><?= $i18n->reg->titel ?></title>
 </head>
 <body>
 
-<?php require_once("modules/header.php"); ?>
-
 <main class="container">
+<?php require_once("modules/header-pico.php"); ?>
+
   
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
-  <form action="staende.php" class="needs-validation" method="post" id="registrationForm" novalidate>
+  <form action="staende.php" method="post" id="registrationForm" novalidate style="width:600px;">
 
-    <div class="row">
-      <div class="col-sm-8">
-        <label for="name" data-i18n="reg.inputName_label" class="form-label"><?= $i18n->reg->inputName_label ?></label>:
-        <input type="text" class="form-control" id="name" placeholder="<?= $i18n->reg->inputName_platzhalter ?>" data-i18n="reg.inputName_platzhalter" data-i18n-attr="placeholder" name="name"/>
-        <div class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig"><?= $i18n->reg->inputName_hinweisUngueltig ?></div>
-      </div>
-    </div>
+    <fieldset>
+
+      <!-- NAME -->
+      <label for="name" data-i18n="reg.inputName_label"><?= $i18n->reg->inputName_label ?></label>
+      <input
+        type="text"
+        id="name"
+        placeholder="<?= $i18n->reg->inputName_platzhalter ?>"
+        data-i18n="reg.inputName_platzhalter"
+        data-i18n-attr="placeholder"
+        autocomplete="name"
+      />
+    </fieldset>
+    
+    <label for="strasse" data-i18n="reg.inputStrasse_label"><?= $i18n->reg->inputStrasse_label ?></label>
+    <fieldset role="group">
+      <!-- STRASSE -->
+      <input
+        type="text"
+        id="strasse"
+        placeholder="<?= $i18n->reg->inputStrasse_platzhalter ?>"
+        data-i18n="reg.inputStrasse_platzhalter"
+        data-i18n-attr="placeholder"
+        autocomplete="street"
+      />
+      
+      <!--<label for="hausnummer" data-i18n="reg.inputHausnummer_label"><?= $i18n->reg->inputHausnummer_label ?></label>-->
+      <input
+        type="text"
+        id="hausnummer"
+        placeholder="<?= $i18n->reg->inputHausnummer_platzhalter ?>"
+        data-i18n="reg.inputHausnummer_platzhalter"
+        data-i18n-attr="placeholder"
+        style="width:20%;"
+      />
+    </fieldset>
+
 
     <div>&nbsp;</div>
     <div class="row">
