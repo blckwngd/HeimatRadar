@@ -1,23 +1,10 @@
 <?php
 
-$i18n = json_decode(file_get_contents("i18n/de.json"));
-  
-session_start();
-$isLoggedIn = ((isset($_SESSION["API_SECRET"])) && $_SESSION["API_SECRET"] == API_SECRET);
-$languages = array(
-  "de" => "Deutsch",
-  "en" => "English"
-);
-  /*require_once("config/config.php");
-  require_once("staende.php");
-
-  global $i18n, $isLoggedIn;
-  $staende0 = json_encode(getStaende());
-*/
+  require_once("config/config.php");
   $printView = isset($_GET["print"]);
 
 ?><!DOCTYPE html>
-<html data-theme="light">
+<html lang="de" data-theme="light">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -68,7 +55,6 @@ $languages = array(
       var printView = <?php echo ($printView ? 'true' : 'false'); ?>;
       var isLoggedIn = <?php echo ($isLoggedIn ? 'true' : 'false'); ?>;
 
-      const pb = new PocketBase("https://ajna.pockethost.io");
       var objects = null;
       var table = null;
 
@@ -95,7 +81,7 @@ $languages = array(
           getInitialData();
         });
         
-        //initHeimatRadar()
+        initHeimatRadar()
       };
 
 

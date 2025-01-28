@@ -1,4 +1,5 @@
 var map;
+const pb = new PocketBase("https://ajna.pockethost.io");
 
 async function highlightStand() {
   var standId = this.originalId;
