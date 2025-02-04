@@ -29,31 +29,58 @@
   
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
-  <form action="staende.php" method="post" id="registrationForm" novalidate style="width:600px;">
+  <form action="staende.php" method="post" id="registrationForm" novalidate style="max-width:800px;">
+    
+    <hr/>
 
     <fieldset>
-
       <!-- NAME -->
-      <label for="name" data-i18n="reg.inputName_label"><?= $i18n->reg->inputName_label ?></label>
+      <label for="name" class="myFormLabel" data-i18n="reg.inputName_label"><?= $i18n->reg->inputName_label ?></label>&nbsp;
       <input
         type="text"
         id="name"
-        placeholder="<?= $i18n->reg->inputName_platzhalter ?>"
-        data-i18n="reg.inputName_platzhalter"
-        data-i18n-attr="placeholder"
         autocomplete="name"
       />
+      <!--<small class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig"><?= $i18n->reg->inputName_hinweisUngueltig ?></small>-->
+      <small data-i18n="reg.inputName_platzhalter"><?= $i18n->reg->inputName_platzhalter ?></small>
+
     </fieldset>
+    <hr/>
     
-    <label for="strasse" data-i18n="reg.inputStrasse_label"><?= $i18n->reg->inputStrasse_label ?></label>
+    <!-- EMAIL -->
+    <fieldset>
+      <label for="email" class="myFormLabel" data-i18n="reg.inputEmail_label"><?= $i18n->reg->inputEmail_label ?></label>&nbsp;
+      <input
+        type="text"
+        id="email"
+        autocomplete="email"
+        placeholder="optional@mail.de"
+      />
+      <!--<small class="invalid-feedback" style="display:none;" data-i18n="reg.inputEmail_hinweisUngueltig"><?= $i18n->reg->inputEmail_hinweisUngueltig ?></small>-->
+      <small data-i18n="reg.inputEmail_platzhalter"><?= $i18n->reg->inputEmail_platzhalter ?></small>
+    </fieldset>
+    <hr/>
+
+    <!-- TELEFON -->
+    <fieldset>
+      <label for="phone" class="myFormLabel" data-i18n="reg.inputPhone_label"><?= $i18n->reg->inputPhone_label ?></label>&nbsp;
+      <input
+        type="text"
+        id="phone"
+        autocomplete="phone"
+        placeholder="optional"
+      />
+      <!--<small class="invalid-feedback" style="display:none;" data-i18n="reg.inputPhone_hinweisUngueltig"><?= $i18n->reg->inputPhone_hinweisUngueltig ?></small>-->
+      <small data-i18n="reg.inputPhone_platzhalter"><?= $i18n->reg->inputPhone_platzhalter ?></small>
+    </fieldset>
+    <hr/>
+
+    <!-- STRASSE -->
+    *<label class="myFormLabel" for="strasse" data-i18n="reg.inputStrasse_label"><?= $i18n->reg->inputStrasse_label ?></label>
     <fieldset role="group">
-      <!-- STRASSE -->
       <input
         type="text"
         id="strasse"
-        placeholder="<?= $i18n->reg->inputStrasse_platzhalter ?>"
-        data-i18n="reg.inputStrasse_platzhalter"
-        data-i18n-attr="placeholder"
         autocomplete="street"
       />
       
@@ -67,22 +94,32 @@
         style="width:20%;"
       />
     </fieldset>
+    <small data-i18n="reg.inputStrasse_platzhalter"><?= $i18n->reg->inputStrasse_platzhalter ?></small>
+    <small data-i18n="reg.hinweis_ort"><?= $i18n->reg->hinweis_ort ?></small>
+    <!--<small class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"><?= $i18n->reg->inputStrasse_hinweisUngueltig ?></small>-->
+    <hr/>
+
+    <!-- ANZAHL -->
+    <fieldset>
+      <label for="anzahl" data-i18n="reg.inputAnzahl_label"><?= $i18n->reg->inputAnzahl_label ?></label>
+      <select type="number" id="anzahl" style="width:auto;">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10+</option>
+      </select>
+      <!--<small class="invalid-feedback" data-i18n="reg.inputAnzahl_hinweisUngueltig"><?= $i18n->reg->inputAnzahl_hinweisUngueltig ?></small>-->
+      <small data-i18n="reg.inputAnzahl_hinweis"><?= $i18n->reg->inputAnzahl_hinweis ?></small>
+    </fieldset>
 
 
-    <div>&nbsp;</div>
-    <div class="row">
-      <div class="col-sm-6">
-        *<label for="strasse" class="form-label" data-i18n="reg.inputStrasse_label">Straße</label>:
-        <input type="text" class="form-control" id="strasse" placeholder="Bitte Straße eingeben" data-i18n="reg.inputStrasse_platzhalter" data-i18n-attr="placeholder" name="strasse" required>
-        <div class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"><?= $i18n->reg->inputStrasse_hinweisUngueltig ?></div>
-      </div>
-      <div class="col-sm-2">
-        *<label for="hausnr" class="form-label" data-i18n="reg.inputHausnummer_label">Hausnummer</label>:
-        <input type="text" class="form-control" id="hausnr" placeholder="Nr." data-i18n="reg.inputHausnummer_platzhalter" data-i18n-attr="placeholder" name="hausnr" required>
-        <div class="invalid-feedback" data-i18n="reg.inputHausnummer_hinweisUngueltig"><?= $i18n->reg->inputHausnummer_hinweisUngueltig ?></div>
-      </div>
-    </div>
-    <span data-i18n="reg.hinweis_ort"><?= $i18n->reg->hinweis_ort ?></span>
+
     
     <div>&nbsp;</div>
     <div class="row">

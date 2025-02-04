@@ -19,6 +19,11 @@ body {
   min-height: 75rem;
 }
 
+.myFormLabel {
+  width: auto;
+  float: left;
+}
+
 #map { 
   height: 75%;
   min-height: 600px;
