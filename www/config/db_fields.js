@@ -1,3 +1,4 @@
+/** Tabulator Felddefinitionen, siehe https://tabulator.info/docs/6.3/columns */
 const db_fields = [
     {title:"Straße", field:"name", sorter:"string"},
     {title:"Hausnummer", field:"hausnummer", sorter:"number"},
