@@ -29,7 +29,7 @@
   
   <h2 data-i18n="reg.titel"><?= $i18n->reg->titel ?></h2>
 
-  <form action="staende.php" method="post" id="registrationForm" novalidate style="max-width:800px;">
+  <form action="#" method="post" id="registrationForm" style="max-width:800px;">
     
     <hr/>
 
@@ -39,10 +39,14 @@
       <input
         type="text"
         id="name"
+        placeholder="optional"
         autocomplete="name"
+        aria-describedby="inputName_platzhalter"
+        onchange="checkInputValidity(this)"
+        maxlength="50"
       />
       <!--<small class="invalid-feedback" data-i18n="reg.inputName_hinweisUngueltig"><?= $i18n->reg->inputName_hinweisUngueltig ?></small>-->
-      <small data-i18n="reg.inputName_platzhalter"><?= $i18n->reg->inputName_platzhalter ?></small>
+      <small data-i18n="reg.inputName_platzhalter" id="inputStrasse_platzhalter"><?= $i18n->reg->inputName_platzhalter ?></small>
 
     </fieldset>
     <hr/>
@@ -51,13 +55,16 @@
     <fieldset>
       <label for="email" class="myFormLabel" data-i18n="reg.inputEmail_label"><?= $i18n->reg->inputEmail_label ?></label>&nbsp;
       <input
-        type="text"
+        type="email"
         id="email"
         autocomplete="email"
-        placeholder="optional@mail.de"
+        placeholder="optional"
+        aria-describedby="inputEmail_platzhalter"
+        maxlength="50"
+        onchange="checkInputValidity(this)"
       />
       <!--<small class="invalid-feedback" style="display:none;" data-i18n="reg.inputEmail_hinweisUngueltig"><?= $i18n->reg->inputEmail_hinweisUngueltig ?></small>-->
-      <small data-i18n="reg.inputEmail_platzhalter"><?= $i18n->reg->inputEmail_platzhalter ?></small>
+      <small data-i18n="reg.inputEmail_platzhalter" id="inputEmail_platzhalter"><?= $i18n->reg->inputEmail_platzhalter ?></small>
     </fieldset>
     <hr/>
 
@@ -65,13 +72,17 @@
     <fieldset>
       <label for="phone" class="myFormLabel" data-i18n="reg.inputPhone_label"><?= $i18n->reg->inputPhone_label ?></label>&nbsp;
       <input
-        type="text"
+        type="tel"
+        pattern="^\+?[0-9\s\(\)\-]*$"
         id="phone"
         autocomplete="phone"
         placeholder="optional"
+        aria-describedby="inputPhone_platzhalter"
+        onchange="checkInputValidity(this)"
+        maxlength="25"
       />
       <!--<small class="invalid-feedback" style="display:none;" data-i18n="reg.inputPhone_hinweisUngueltig"><?= $i18n->reg->inputPhone_hinweisUngueltig ?></small>-->
-      <small data-i18n="reg.inputPhone_platzhalter"><?= $i18n->reg->inputPhone_platzhalter ?></small>
+      <small data-i18n="reg.inputPhone_platzhalter" id="inputPhone_platzhalter"><?= $i18n->reg->inputPhone_platzhalter ?></small>
     </fieldset>
     <hr/>
 
@@ -82,6 +93,10 @@
         type="text"
         id="strasse"
         autocomplete="street"
+        required
+        aria-describedby="inputStrasse_platzhalter"
+        onchange="checkInputValidity(this)"
+        maxlength="100"
       />
       
       <!--<label for="hausnummer" data-i18n="reg.inputHausnummer_label"><?= $i18n->reg->inputHausnummer_label ?></label>-->
@@ -91,10 +106,14 @@
         placeholder="<?= $i18n->reg->inputHausnummer_platzhalter ?>"
         data-i18n="reg.inputHausnummer_platzhalter"
         data-i18n-attr="placeholder"
-        style="width:20%;"
+        style="width:30%;"
+        required
+        aria-describedby="inputStrasse_platzhalter"
+        onchange="checkInputValidity(this)"
+        maxlength="20"
       />
     </fieldset>
-    <small data-i18n="reg.inputStrasse_platzhalter"><?= $i18n->reg->inputStrasse_platzhalter ?></small>
+    <small data-i18n="reg.inputStrasse_platzhalter" id="inputStrasse_platzhalter"><?= $i18n->reg->inputStrasse_platzhalter ?></small>
     <small data-i18n="reg.hinweis_ort"><?= $i18n->reg->hinweis_ort ?></small>
     <!--<small class="invalid-feedback" data-i18n="reg.inputStrasse_hinweisUngueltig"><?= $i18n->reg->inputStrasse_hinweisUngueltig ?></small>-->
     <hr/>
@@ -102,140 +121,124 @@
     <!-- ANZAHL -->
     <fieldset>
       <label for="anzahl" data-i18n="reg.inputAnzahl_label"><?= $i18n->reg->inputAnzahl_label ?></label>
-      <select type="number" id="anzahl" style="width:auto;">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10+</option>
+      <select type="number" id="anzahl" style="width:auto;" required>
+        <option selected value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10+</option>
       </select>
+
       <!--<small class="invalid-feedback" data-i18n="reg.inputAnzahl_hinweisUngueltig"><?= $i18n->reg->inputAnzahl_hinweisUngueltig ?></small>-->
       <small data-i18n="reg.inputAnzahl_hinweis"><?= $i18n->reg->inputAnzahl_hinweis ?></small>
     </fieldset>
 
 
+    <!-- Angebot -->
+    <fieldset>
+      <label for="angebot" class="myFormLabel" data-i18n="reg.inputAngebot_label"><?= $i18n->reg->inputAngebot_label ?></label>&nbsp;
+      <textarea
+        id="angebot"
+        placeholder="DVDs, Sneaker, Möbel..."
+        maxlength="200"
+        aria-describedby="inputAngebot_platzhalter"
+        onchange="checkInputValidity(this)"
+      ></textarea>
+      <!--<small data-i18n="reg.inputAngebot_hinweisUngueltig">max. 200 Zeichen</div>-->
+      <small data-i18n="reg.inputAngebot_platzhalter" id="inputAngebot_platzhalter"><?= $i18n->reg->inputAngebot_platzhalter ?></small>
 
-    
-    <div>&nbsp;</div>
-    <div class="row">
-      <div class="col-sm-3">
-        *<label for="anzahl" class="form-label" data-i18n="reg.inputAnzahl_label">Anzahl</label>:
-        <input type="number" value="1" class="form-control" id="anzahl" placeholder="1" min="1" max="10" data-i18n="reg.inputAnzahl_platzhalter" data-i18n-attr="placeholder" name="anzahl" required>
-        <div class="invalid-feedback" data-i18n="reg.inputAnzahl_hinweisUngueltig"><?= $i18n->reg->inputAnzahl_hinweisUngueltig ?></div>
-      </div>
-      <div class="col-sm-5"></div>
-    </div>
-    <span data-i18n="reg.inputAnzahl_hinweis"><?= $i18n->reg->inputAnzahl_hinweis ?></span>
+    </fieldset>
+    <hr/>
 
-    <div>&nbsp;</div>
-    <div class="row">
-      <div class="col-sm-4">
-        <label for="email" data-i18n="reg.inputEmail_label" class="form-label">Email</label>:
-        <input data-i18n="reg.inputEmail_platzhalter" data-i18n-attr="placeholder" type="email" class="form-control" id="email" placeholder="optional, wird nicht veröffentlicht" name="email">
-        <div class="invalid-feedback" data-i18n="reg.inputEmail_hinweisUngueltig">Bitte gib eine gültige Mailadresse ein, oder lasse das Feld leer.</div>
-      </div>
-      <div class="col-sm-4">
-        <label for="phone" data-i18n="reg.inputPhone_label" class="form-label">Telefon</label>:
-        <input type="tel" data-i18n="reg.inputPhone_platzhalter" data-i18n-attr="placeholder" class="form-control" id="phone" placeholder="optional, wird nicht veröffentlicht" name="phone">
-        <div class="invalid-feedback" data-i18n="reg.inputPhone_hinweisUngueltig">Bitte gib eine gültige Telefonnummer ein, oder lasse das Feld leer.</div>
-      </div>
-    </div>
 
-    <div>&nbsp;</div>
-    <div class="row">
-      <div class="col-sm-8">
-        <label for="angebot" data-i18n="reg.inputAngebot_label" class="form-label">Angebot</label>:
-        <textarea data-i18n="reg.inputAngebot_platzhalter" data-i18n-attr="placeholder" class="form-control" id="angebot" placeholder="(optional) was bietest du an?" name="angebot" maxlength="200"></textarea>
-        <div data-i18n="reg.inputAngebot_hinweisUngueltig" class="invalid-feedback">max. 200 Zeichen</div>
-      </div>
-    </div>
-    
-    <div>&nbsp;</div>
-    <div class="row">
-      <div class="col-sm-8">
-        <label for="kommentar" data-i18n="reg.inputKommentar_label" class="form-label">Kommentar:</label>
-        <textarea data-i18n="reg.inputKommentar_platzhalter" data-i18n-attr="placeholder" class="form-control" id="kommentar" placeholder="(optional, wird nicht veröffentlicht) möchtest du uns etwas mitteilen?" name="kommentar" maxlength="2048"></textarea>
-        <div data-i18n="reg.inputKommentar_hinweisUngueltig" class="invalid-feedback">max. 2048 Zeichen</div>
-      </div>
-    </div>
-    <p></p>
+    <!-- KOMMENTAR -->
+    <fieldset>
+      <label for="kommentar" class="myFormLabel" data-i18n="reg.inputKommentar_label"><?= $i18n->reg->inputKommentar_label ?></label>&nbsp;
+      <textarea
+        id="kommentar"
+        placeholder=""
+        maxlength="200"
+        aria-describedby="inputKommentar_platzhalter"
+        onchange="checkInputValidity(this)"
+      ></textarea>
+      <small data-i18n="reg.inputKommentar_platzhalter" id="inputKommentar_platzhalter"><?= $i18n->reg->inputKommentar_platzhalter ?></small>
 
-    <div class="row">
-      <div class="col-sm-8">
-        <input class="form-check-input" type="checkbox" id="teilnahme" name="teilnahme" required>
-        <label class="form-check-label" data-i18n="reg.inputTeilnahme_label" for="teilnahme">Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.</label>
-        <div class="valid-feedback" data-i18n="akzeptiert">akzeptiert</div>
-        <div class="invalid-feedback" data-i18n="pflichtfeld">Pflichtfeld</div>
-      </div>
-    </div>
+    </fieldset>
+    <hr/>
 
-    <div class="row">
-      <div class="col-sm-8">
-        <input class="form-check-input" type="checkbox" id="datenschutz" name="datenschutz" required>
-        <label class="form-check-label" data-i18n="reg.inputDatenschutz_label" for="datenschutz">Ich habe die u.g. Hinweise zum Datenschutz zur Kenntnis genommen und akzeptiert.</label>
-        <div class="valid-feedback" data-i18n="akzeptiert"><?= $i18n->akzeptiert ?></div>
-        <div class="invalid-feedback" data-i18n="pflichtfeld"><?= $i18n->pflichtfeld ?></div>
-      </div>
-    </div>
 
+    <!-- CHECKBOXEN -->
+    <fieldset>
+      <label>
+        <input
+          type="checkbox"
+          name="teilnahme"
+          id="inputTeilnahme"
+          role="switch"
+          required
+          aria-invalid=""
+          aria-describedby="inputTeilnahme_label"
+          onchange="checkInputValidity(this)"
+        />
+        <span for="teilnahme" data-i18n="reg.inputTeilnahme_label"><?= $i18n->reg->inputTeilnahme_label ?></span>&nbsp;
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          name="datenschutz"
+          role="switch"
+          required
+          aria-invalid=""
+          aria-describedby="inputDatenschutz_label"
+          onchange="checkInputValidity(this)"
+        />
+        <span for="datenschutz" data-i18n="reg.inputDatenschutz_label" required><?= $i18n->reg->inputDatenschutz_label ?></span>&nbsp;
+      </label>
+    </fieldset>
+
+    <hr/>
     
     <?php if ($isLoggedIn) { ?>
-      <div class="row adminFeature">
-        <div class="col-sm-8">
-          <input class="form-check-input" type="checkbox" id="validieren" name="validieren">
-          <label class="form-check-label" data-i18n="reg.inputValidieren_label" for="validieren"><?= $i18n->reg->inputValidieren_label ?></label>
-          <div class="valid-feedback" data-i18n="akzeptiert"><?= $i18n->akzeptiert ?></div>
-        </div>
-      </div>
+
+      <!-- SOFORT VALIDIERUNG -->
+      <fieldset>
+      <legend>Admin-Optionen:</legend>
+        <label>
+          <input type="checkbox" name="validieren" 
+          role="switch"/>
+          <span for="validieren" data-i18n="reg.inputValidieren_label"><?= $i18n->reg->inputValidieren_label ?></span>&nbsp;
+        </label>
+      </fieldset>
+      <hr/>
+      
     <?php } ?>
 
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-    <div class="form-group">
-      <p><strong data-i18n="reg.hinweis_allgemein_titel">ALLGEMEINE HINWEISE</strong></p>
-      <span data-i18n="reg.hinweis_allgemein"><?= $i18n->reg->hinweis_allgemein ?></span>
-    </div>
+    
+    <section>
+      <h6 data-i18n="reg.hinweis_allgemein_titel">ALLGEMEINE HINWEISE</h6>
+      <small data-i18n="reg.hinweis_allgemein"><?= $i18n->reg->hinweis_allgemein ?></small>
+    </section>
 
-    <p></p>
-    <div class="form-group">
-      <p><br/><strong data-i18n="reg.hinweis_datenschutz_titel">HINWEISE ZUM DATENSCHUTZ</strong><br/></p>
-      <span data-i18n="reg.hinweis_datenschutz"><?= $i18n->reg->hinweis_datenschutz ?></span>
-    </div>
+    <hr/>
 
-    <br/>
-    <p>
+    <section>
+      <h6 data-i18n="reg.hinweis_datenschutz_titel">HINWEISE ZUM DATENSCHUTZ</h6>
+      <small data-i18n="reg.hinweis_datenschutz"><?= $i18n->reg->hinweis_datenschutz ?></small>
+    </section>
+
+    <hr/>
+
+    <section>
       <button type="submit" data-i18n="reg.jetztTeilnehmen" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
-    </p>
+    </section>
   </form>
   
 </div>
-
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
-<script>
-  (function () {
-    'use strict';
-    window.addEventListener('load', function () {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>
 
 <!-- Translation Modul von https://codeburst.io/translating-your-website-in-pure-javascript-98b9fa4ce427 -->
 <script src="https://unpkg.com/@andreasremdt/simple-translator@latest/dist/umd/translator.min.js"></script>
@@ -245,8 +248,13 @@
 
   var form = document.getElementById('registrationForm');
 
+  function checkInputValidity(e) {
+    let v = e.checkValidity();
+    e.ariaInvalid=!v;
+  }
+
   function processForm(e) {
-      
+
       if (form.checkValidity() === false) {
         alert('invalid');
         if (e.preventDefault) e.preventDefault();

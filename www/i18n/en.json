@@ -11,7 +11,7 @@
         "reg.inputName_hinweisGueltig": "ok",
         
         "inputStrasse_label": "Street",
-        "inputStrasse_platzhalter": "please enter street (required, 50 characters max.)",
+        "inputStrasse_platzhalter": "please enter street and house number (required)",
         "reg.inputStrasse_hinweisUngueltig": "required; 50 characters max.",
         
         "inputHausnummer_label": "Number",
@@ -32,12 +32,12 @@
         "inputAnzahl_hinweis": "how many households will participate at this address?",
         
         "inputAngebot_label": "Offer",
-        "inputAngebot_platzhalter": "please enter what you want to sell at your stall.",
+        "inputAngebot_platzhalter": "please enter what you want to sell at your stall. (200 characters max.)",
         "inputAngebot_hinweisUngueltig": "200 characters max.",
         
         "inputKommentar_label": "Comment",
-        "inputKommentar_platzhalter": "(optional) what do you want to let us know?",
-        "inputKommentar_hinweisUngueltig": "2000 characters max.",
+        "inputKommentar_platzhalter": "(optional) what do you want to let us know? (200 characters max.)",
+        "inputKommentar_hinweisUngueltig": "200 characters max.",
 
         "inputTeilnahme_label": "I want to participate at the given address.",
         "inputDatenschutz_label": "I have read and accepted the privacy policy mentioned below.",

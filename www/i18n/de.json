@@ -2,14 +2,14 @@
     "reg": {
         "bezeichnung": "Teilnehmen",
         "titel": "Teilnahme am Hof- und Gartenflohmarkt am 07. Juni 2024",
-        "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen, Gehweg, Straße o.Ä. sind leider nicht gestattet.",
+        "hinweis_ort": "ACHTUNG: Stände müssen auf dem eigenen Grundstück stehen; Gehweg, Straße o.Ä. sind leider nicht gestattet.",
         
         "inputName_label": "Name",
         "inputName_platzhalter": "dein Name (optional, wird nicht veröffentlicht; max. 100 Zeichen)",
         "inputName_hinweisUngueltig": "maximal 100 Zeichen.",
         
         "inputStrasse_label": "Straße",
-        "inputStrasse_platzhalter": "bitte Straße eingeben (max. 50 Zeichen)",
+        "inputStrasse_platzhalter": "bitte Straße und Hausnummer eingeben (Pflichtfeld)",
         "inputStrasse_hinweisUngueltig": "Pflichtfeld; max. 50 Zeichen.",
         
         "inputHausnummer_label": "Nummer",
@@ -30,11 +30,11 @@
         "inputAnzahl_hinweis": "Wie viele Haushalte werden an dieser Adresse teilnehmen?",
         
         "inputAngebot_label": "Angebot",
-        "inputAngebot_platzhalter": "(optional) was bietest du an?",
+        "inputAngebot_platzhalter": "(optional) was bietest du an? (max. 200 Zeichen)",
         "inputAngebot_hinweisUngueltig": "max. 200 Zeichen",
 
         "inputKommentar_label": "Kommentar",
-        "inputKommentar_platzhalter": "(optional, wird nicht veröffentlicht) möchtest du uns etwas mitteilen?",
+        "inputKommentar_platzhalter": "(optional, wird nicht veröffentlicht) möchtest du uns noch etwas mitteilen? (max. 200 Zeichen)",
         "inputKommentar_hinweisUngueltig": "max. 200 Zeichen",
 
         "inputTeilnahme_label": "Ich möchte an der Veranstaltung an o.g. Adresse teilnehmen.",
