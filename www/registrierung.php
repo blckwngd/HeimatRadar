@@ -93,7 +93,6 @@
         type="text"
         id="strasse"
         autocomplete="street"
-        required
         aria-describedby="inputStrasse_platzhalter"
         onchange="checkInputValidity(this)"
         maxlength="100"
@@ -253,16 +252,59 @@
     e.ariaInvalid=!v;
   }
 
+  async function submitForm() {
+    
+    // Werte aus den Eingabefeldern holen
+    const angebot = document.getElementById('angebot').value;
+    const anzahl = parseInt(document.getElementById('anzahl').value, 10);
+    const hausnummer = document.getElementById('hausnummer').value;
+    const strasse = document.getElementById('strasse').value;
+    const kommentar = document.getElementById('kommentar')?.value || '';
+    const telefon = document.getElementById('telefon')?.value || '';
+    const email = document.getElementById('email')?.value || '';
+    
+    try {
+        // Eintrag in die Collection "dorfflohmarkt" erstellen
+        const record = await pb.collection('dorfflohmarkt').create({
+            angebot: angebot,
+            anzahl: anzahl,
+            hausnummer: hausnummer,
+            strasse: strasse,
+            kommentar: kommentar,
+            telefon: telefon,
+            email: email
+        });
+        
+        console.log('Eintrag erfolgreich:', record);
+        alert('Eintrag erfolgreich!');
+    } catch (error) {
+        console.error('Fehler beim Eintragen:', error);
+        switch (err.status) {
+          case 400:
+            alert('Ungültige Daten. Bitte prüfe deine Eingaben und versuche es erneut.');
+            break;
+          case 500:
+            alert("Interner Fehler :-( Bitte versuche es später noch einmal.");
+            break;
+          default:
+            alert("Ein Fehler ist aufgetreten :-( Bitte versuche es später noch einmal.");
+            break;
+        }
+    }
+}
+
   function processForm(e) {
 
+      if (e.preventDefault) e.preventDefault();
+
       if (form.checkValidity() === false) {
-        alert('invalid');
-        if (e.preventDefault) e.preventDefault();
+        alert('Ungültige Daten. Bitte prüfe deine Eingaben und versuche es erneut.');
       } else {
         alert('valid');
       }
       form.classList.add('was-validated');
 
+      submitForm();
       return false;
   }
 
