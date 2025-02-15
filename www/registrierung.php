@@ -93,6 +93,7 @@
         type="text"
         id="strasse"
         autocomplete="street"
+        required
         aria-describedby="inputStrasse_platzhalter"
         onchange="checkInputValidity(this)"
         maxlength="100"
@@ -138,7 +139,7 @@
     </fieldset>
 
 
-    <!-- Angebot -->
+    <!-- ANGEBOT -->
     <fieldset>
       <label for="angebot" class="myFormLabel" data-i18n="reg.inputAngebot_label"><?= $i18n->reg->inputAngebot_label ?></label>&nbsp;
       <textarea
@@ -233,7 +234,7 @@
     <hr/>
 
     <section>
-      <button type="submit" data-i18n="reg.jetztTeilnehmen" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
+      <button type="submit" id="btnSubmit" data-i18n="reg.jetztTeilnehmen" class="btn btn-primary col-sm-4">JETZT TEILNEHMEN</button>
     </section>
   </form>
   
@@ -262,6 +263,7 @@
     const kommentar = document.getElementById('kommentar')?.value || '';
     const telefon = document.getElementById('telefon')?.value || '';
     const email = document.getElementById('email')?.value || '';
+    const btn = document.getElementById("btnSubmit");
     
     try {
         // Eintrag in die Collection "dorfflohmarkt" erstellen
@@ -277,9 +279,10 @@
         
         console.log('Eintrag erfolgreich:', record);
         alert('Eintrag erfolgreich!');
+        btn.ariaBusy = false;
     } catch (error) {
         console.error('Fehler beim Eintragen:', error);
-        switch (err.status) {
+        switch (error.status) {
           case 400:
             alert('Ungültige Daten. Bitte prüfe deine Eingaben und versuche es erneut.');
             break;
@@ -290,19 +293,23 @@
             alert("Ein Fehler ist aufgetreten :-( Bitte versuche es später noch einmal.");
             break;
         }
+        btn.ariaBusy = false;
     }
 }
 
   function processForm(e) {
 
+      var btn = document.getElementById("btnSubmit");
+      btn.ariaBusy = true;
+
       if (e.preventDefault) e.preventDefault();
 
       if (form.checkValidity() === false) {
         alert('Ungültige Daten. Bitte prüfe deine Eingaben und versuche es erneut.');
+        return false;
       } else {
-        alert('valid');
+        form.classList.add('was-validated');
       }
-      form.classList.add('was-validated');
 
       submitForm();
       return false;
