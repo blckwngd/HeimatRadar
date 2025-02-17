@@ -278,8 +278,10 @@
         });
         
         console.log('Eintrag erfolgreich:', record);
-        alert('Eintrag erfolgreich!');
         btn.ariaBusy = false;
+
+        window.location.href="registrierung-done.php";
+        
     } catch (error) {
         console.error('Fehler beim Eintragen:', error);
         switch (error.status) {

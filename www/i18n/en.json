@@ -50,6 +50,12 @@
 
         "jetztTeilnehmen": "PARTICIPATE NOW"
     },
+
+    "regdone": {
+        "titel": "You´ve signed up successfully!",
+        "beschreibung": "Thank you for participating in our Hof- und Gartenflohmarkt! Please note, that your entry will not be shown on the map until we verify it. If you entered a mail address, you will receive a notofication as soon as your entry is online.",
+        "zur_karte": "To the map"
+    },
     
     "karte": {
         "bezeichnung": "Map",

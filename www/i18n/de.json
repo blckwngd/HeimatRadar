@@ -49,6 +49,12 @@
         "jetztTeilnehmen": "JETZT TEILNEHMEN"
     },
 
+    "regdone": {
+        "titel": "Du bist registriert!",
+        "beschreibung": "Vielen Dank für deine Teilnahme am Hof- und Gartenflohmarkt! Bitte beachte, dass dein Eintrag erst auf der Karte erscheint, wenn er von uns verifiziert wurde. Wenn du eine Mailadresse hinterlegt hast erhältst du dann eine Information.",
+        "zur_karte": "Zur Karte aller Stände"
+    },
+
     "karte": {
         "bezeichnung": "Karte",
         "titel": "Willkommen beim Hof- und Gartenflohmarkt",
