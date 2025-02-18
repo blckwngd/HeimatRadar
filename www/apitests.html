@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- PocketBase | https://pocketbase.io/ -->
+    <script src="inc/pocketbase/pocketbase.umd.js"></script>
+
+    <!-- PicoCSS | https://picocss.com/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+      
+    <!-- HeimatRadar -->
+    <link href='inc/heimatradar/heimatradar.css' rel='stylesheet' />
+    <script src='inc/heimatradar/heimatradar.js'></script>
+  
+  <title data-i18n="reg.titel">API DEBUGGER</title>
+
+  <script type="text/javascript">
+    
+    
+    async function performLogin() {
+        console.log("logging in...");
+        var username = document.getElementById("login").value;
+        var password = document.getElementById("password").value;
+        
+        const authData = await pb.collection("users").authWithPassword(username, password);
+
+        // after the above you can also access the auth data from the authStore
+        console.log(pb.authStore.isValid);
+        console.log(pb.authStore.token);
+        console.log(pb.authStore.record.id);
+
+        return false;
+    }
+
+    console.log("starting...");
+
+    window.onload = () => {
+        console.log("ready.");
+    }
+
+  </script>
+</head>
+<body>
+    <main class="container">
+        
+          
+          <h2 data-i18n="reg.titel">API DEBUGGER</h2>
+        
+          <form action="#" method="post" id="form" style="max-width:800px;">
+            
+            <hr/>
+        
+            <fieldset class="grid">
+                <input 
+                id="login"
+                placeholder="Login"
+                aria-label="Login"
+                autocomplete="username"
+                />
+                <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                aria-label="Password"
+                autocomplete="current-password"
+                />
+                <input
+                type="button"
+                value="Log in"
+                onclick="performLogin()"
+                />
+            </fieldset>
+        </form>
+
+        <hr/>
+
+        <section>Check console...</section>
+    </main>
+</body>
+</html>
