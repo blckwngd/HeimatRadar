@@ -12,13 +12,30 @@ onRecordViewRequest((e) => {
     e.next()
 }, "dorfflohmarkt")
 
+onRecordsListRequest((e) => {
+    e.next()
+    console.log("onRecordListRequest: sending mail alert...")
+    const config = require(`${__hooks}/config.js`)
+    const message = new MailerMessage({
+        from: {
+            address: e.app.settings().meta.senderAddress,
+            name:    e.app.settings().meta.senderName,
+        },
+        to:      [{address: config.mail_recipient}],
+        subject: "Someone listed your data...",
+        html:    "must be haxx0rs",
+        // bcc, cc and custom headers are also supported...
+    })
+    e.app.newMailClient().send(message)
+}, "staende")
+
 
 onRecordCreateRequest((e) => {
     const strasse = e.record.get("strasse");
     const hausnummer = e.record.get("hausnummer");
     
+    const config = require(`${__hooks}/config.js`)
     const utils = require(`${__hooks}/utils.js`)
-    utils.hello("world")
 
     if (strasse && hausnummer) {
         const geoJson = utils.geocodeAddress(strasse, hausnummer);
@@ -28,12 +45,6 @@ onRecordCreateRequest((e) => {
         }
     }
 
-    e.record.unhide("email");
-    e.record.unhide("name");
-    e.record.unhide("telefon");
-    e.record.unhide("kommentar");
-
-    /*
     const mail = e.record.get("email");
     console.log("sending mail to " + mail);
 
@@ -51,7 +62,6 @@ onRecordCreateRequest((e) => {
     if (mail) {
         e.app.newMailClient().send(message);
     }
-        */
 
     e.next()
 }, "dorfflohmarkt");
