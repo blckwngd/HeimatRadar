@@ -4,9 +4,9 @@ module.exports = {
         console.log("Hello " + name)
     },
 
-    geocodeAddress: (strasse, hausnummer) => {
-        const address = `${strasse} ${hausnummer}, ${process.env.FIXED_PLZ} ${process.env.FIXED_ORT}, Deutschland`;
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
+    geocodeAddress: (strasse, hausnummer, plz, ort, land, apiKey) => {
+        const address = `${strasse} ${hausnummer}, ${plz} ${ort}, ${land}`;
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
         console.log(url);
         console.log("ORT:" + process.env.FIXED_ORT);
         

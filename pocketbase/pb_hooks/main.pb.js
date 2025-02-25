@@ -16,6 +16,7 @@ onRecordsListRequest((e) => {
     e.next()
     console.log("onRecordListRequest: sending mail alert...")
     const config = require(`${__hooks}/config.js`)
+    /*
     const message = new MailerMessage({
         from: {
             address: e.app.settings().meta.senderAddress,
@@ -27,41 +28,51 @@ onRecordsListRequest((e) => {
         // bcc, cc and custom headers are also supported...
     })
     e.app.newMailClient().send(message)
+    */
 }, "staende")
 
 
 onRecordCreateRequest((e) => {
-    const strasse = e.record.get("strasse");
-    const hausnummer = e.record.get("hausnummer");
+    var name = e.record.get("name")
+    var email = e.record.get("email")
+    var telefon = e.record.get("telefon")
+    var strasse = e.record.get("strasse")
+    var hausnummer = e.record.get("hausnummer")
+    var anzahl = e.record.get("anzahl")
+    var kommentar = e.record.get("kommentar")
+    var angebot = e.record.get("angebot")
     
     const config = require(`${__hooks}/config.js`)
     const utils = require(`${__hooks}/utils.js`)
 
     if (strasse && hausnummer) {
-        const geoJson = utils.geocodeAddress(strasse, hausnummer);
+        const geoJson = utils.geocodeAddress(strasse, hausnummer, config.event_plz, config.event_ort, config.event_land, config.google_maps_api_key);
         if (geoJson) {
             console.log("setting koordinaten to " + geoJson);
             e.record.set("koordinaten", geoJson);
         }
     }
 
-    const mail = e.record.get("email");
-    console.log("sending mail to " + mail);
+    console.log("sending mail to " + config.mail_recipient);
 
     const message = new MailerMessage({
         from: {
             address: e.app.settings().meta.senderAddress,
             name:    e.app.settings().meta.senderName,
         },
-        to:      mail,
-        subject: "YOUR_SUBJECT...",
-        html:    "YOUR_HTML_BODY...",
+        to:      [{address: config.mail_recipient}],
+        subject: config.mail_new_entry_subject,
+        html:    config.mail_new_entry_subject +
+            `Name: ${name}<br/>
+            Email: ${email}<br/>
+            Telefon: ${telefon}<br/>
+            Adresse: ${strasse} ${hausnummer}<br/>
+            Angebot: ${angebot}<br/>
+            Kommentar: ${kommentar}`
         // bcc, cc and custom headers are also supported...
     });
 
-    if (mail) {
-        e.app.newMailClient().send(message);
-    }
+    e.app.newMailClient().send(message);
 
     e.next()
 }, "dorfflohmarkt");
@@ -83,11 +94,9 @@ onRecordUpdateRequest((e) => {
     e.next()
 }, "dorfflohmarkt");
 
-/** CRONJOB */
-console.log("setting up cronjobs...")
-// prints "Hello!" every minute
+/** CRONJOB (1 min) */
 cronAdd("hello", "*/1 * * * *", () => {
-    console.log("Hello!")
+    // this runs every minute in background
 })
 
 onBootstrap((e) => {

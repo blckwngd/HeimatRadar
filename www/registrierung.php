@@ -9,6 +9,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script type="text/javascript" language="javascript">
+      const POCKETBASE_URI = "<?= POCKETBASE_URI ?>";
+    </script>
+    
     <!-- PicoCSS | https://picocss.com/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 
@@ -256,6 +260,7 @@
   async function submitForm() {
     
     // Werte aus den Eingabefeldern holen
+    const name = document.getElementById('name').value;
     const angebot = document.getElementById('angebot').value;
     const anzahl = parseInt(document.getElementById('anzahl').value, 10);
     const hausnummer = document.getElementById('hausnummer').value;
@@ -268,6 +273,7 @@
     try {
         // Eintrag in die Collection "dorfflohmarkt" erstellen
         const record = await pb.collection('dorfflohmarkt').create({
+            name: name,
             angebot: angebot,
             anzahl: anzahl,
             hausnummer: hausnummer,
@@ -277,7 +283,6 @@
             email: email
         });
         
-        console.log('Eintrag erfolgreich:', record);
         btn.ariaBusy = false;
 
         window.location.href="registrierung-done.php";
