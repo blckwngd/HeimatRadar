@@ -42,15 +42,9 @@ onRecordCreateRequest((e) => {
     var anzahl = e.record.get("anzahl")
     var kommentar = e.record.get("kommentar")
     var angebot = e.record.get("angebot")
-    var token = e.record.get("token")
-
-    console.log("TOKEN " + token);
-    console.log("config: ", `config.js`)
     
-    const config = require(`config.js`)
-    console.log("check 1")
+    const config = require(`${__hooks}/config.js`)
     const utils = require(`${__hooks}/utils.js`)
-    console.log("check 2")
 
     if (strasse && hausnummer) {
         const geoJson = utils.geocodeAddress(strasse, hausnummer, config.event_plz, config.event_ort, config.event_land, config.google_maps_api_key);
@@ -59,6 +53,10 @@ onRecordCreateRequest((e) => {
             e.record.set("koordinaten", geoJson);
         }
     }
+
+    e.next()
+    
+    var token = e.record.get("token")
 
     console.log("sending mail to " + config.mail_recipient);
 
@@ -75,15 +73,14 @@ onRecordCreateRequest((e) => {
             Telefon: ${telefon}<br/>
             Adresse: ${strasse} ${hausnummer}<br/>
             Angebot: ${angebot}<br/>
-            Kommentar: ${kommentar}`
+            Kommentar: ${kommentar}<br/>
+            <a href="${config.pocketbase_uri}/reject/${e.record.get('id')}?token=${token}">ABLEHNEN</a>&nbsp;&nbsp;&nbsp;
+            <a href="${config.pocketbase_uri}/accept/${e.record.get('id')}?token=${token}">AKZEPTIEREN</a>`
         // bcc, cc and custom headers are also supported...
     });
 
     e.app.newMailClient().send(message);
 
-    e.next()
-    token = e.record.get("token")
-    console.log("TOKEN after next() " + token);
 }, "dorfflohmarkt");
 
 onRecordUpdateRequest((e) => {
@@ -119,4 +116,49 @@ onSettingsReload((e) => {
     e.next()
 
     // e.app.settings()
+})
+
+// register "GET /reject/{id}" route
+routerAdd("GET", "/reject/{id}", (e) => {
+
+    let id = e.request.pathValue("id")
+    let token = e.requestInfo().query["token"]
+    let record = $app.findRecordById("dorfflohmarkt", id)
+
+    if (token == record.get("token")) {
+        console.log("Eintrag wird gelöscht!!")
+        $app.delete(record);
+        return e.json(200, { "message": "Eintrag wurde gelöscht" })
+    } else {
+        console.log("falscher token!!")
+        return e.json(401, { "message": "Nicht authorisiert" })
+    }
+
+})
+
+// register "GET /accept/{id}" route
+routerAdd("GET", "/accept/{id}", (e) => {
+    
+    const utils = require(`${__hooks}/utils.js`)
+    const config = require(`${__hooks}/config.js`)
+
+    let id = e.request.pathValue("id")
+    let token = e.requestInfo().query["token"]
+    let record = $app.findRecordById("dorfflohmarkt", id)
+
+    if (token == record.get("token")) {
+        console.log("Eintrag akzeptiert!!")
+        let success = utils.sendConfirmationToParticipant(record, config)
+        if (success) {
+            record.set("verifiziert", true);
+            $app.save(record);
+            return e.json(200, { "message": "Eintrag wurde akzeptiert" })
+        } else {
+            return e.json(405, { "message": `Fehler beim Versenden der Mailbenachrichtigung an ${record.get("email")}` })
+        }
+    } else {
+        console.log("falscher token!!")
+        return e.json(401, { "message": "Nicht authorisiert" })
+    }
+
 })

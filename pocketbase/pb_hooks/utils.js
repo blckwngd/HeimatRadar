@@ -34,5 +34,32 @@ module.exports = {
             console.error('Geocoding-Anfrage fehlgeschlagen:', error);
             return null;
         }
+    },
+
+    sendConfirmationToParticipant: (record, config) => {
+        console.log("mail subroutine")
+
+        let email = record.get("email")
+        console.log("mail: " + email)
+
+        if (email) {
+            console.log("send Bestätigungsmail an " + email);
+
+            const message = new MailerMessage({
+                from: {
+                    address: $app.settings().meta.senderAddress,
+                    name:    $app.settings().meta.senderName,
+                },
+                to:     [{address: email}],
+                bcc:    [{address: $app.settings().meta.senderAddress}],
+                subject: config.confirmation_subject,
+                html:    config.confirmation_body
+            });
+            console.log("sending NOW")
+            $app.newMailClient().send(message);
+        } else {
+            console.log("Keine Mailadresse angegeben - Bestätigungsmail wird nicht versendet.")
+        }
+        return true;
     }
 }
