@@ -1,25 +1,24 @@
 <?php
 
   require_once("config/config.php");
-  require_once("staende.php");
+  
 
   global $i18n, $isLoggedIn;
 
   $printView = isset($_GET["print"]);
-  $staende0 = json_encode(getStaende());
+//  $staende0 = json_encode(getStaende());
 
 ?><!DOCTYPE html>
-<html>
+<html lang="de" data-theme="light">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title data-i18n="karte.titel"><?= $i18n->karte->titel ?></title>
     
     
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+    <!-- PicoCSS | https://picocss.com/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
     <!-- LeafletJS | https://leafletjs.com/ -->  
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
@@ -28,8 +27,6 @@
     <link rel="stylesheet" href="https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/css/leaflet.extra-markers.min.css" />
     <script src='https://www.unpkg.com/leaflet-extra-markers@1.2.2/dist/js/leaflet.extra-markers.min.js'></script>
 
-    <!-- Semantic UI -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
 
     <!-- Fullscreen AddIn | https://github.com/Leaflet/Leaflet.fullscreen -->
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
@@ -39,12 +36,19 @@
     <script src='/inc/leaflet-gps/leaflet-gps.min.js'></script>
     <link href='/inc/leaflet-gps/leaflet-gps.min.css' rel='stylesheet' />
 
+    <!-- PocketBase | https://pocketbase.io/ -->
+    <script src="/inc/pocketbase/pocketbase.umd.js"></script>
+
     <!-- HeimatRadar -->
+    <script type="text/javascript" language="javascript">
+      const POCKETBASE_URI = "<?= POCKETBASE_URI ?>";
+    </script>
     <link href='/inc/heimatradar/heimatradar.css' rel='stylesheet' />
     <script src='/inc/heimatradar/heimatradar.js'></script>
 
     
     <script type="text/javascript" language="javascript">
+    
       var myMarker = L.ExtraMarkers.icon({
         icon: 'shopping cart icon',
         markerColor: 'green-light',
@@ -53,7 +57,7 @@
         extraClasses: 'big'
       });
 
-      var staende0 = <?= $staende0 ?>;
+      var staende0 = [];
       var printView = <?php echo ($printView ? 'true' : 'false'); ?>;
       var isLoggedIn = <?php echo ($isLoggedIn ? 'true' : 'false'); ?>;
 
@@ -63,9 +67,9 @@
   </head>
   <body>
 
-      <?php include_once("modules/header.php"); ?>
-
       <main class="container">
+        
+      <?php include_once("modules/header-pico.php"); ?>
 
       <div id="title">
         <h1 data-i18n="karte.titel"><?= $i18n->karte->titel ?></h1>

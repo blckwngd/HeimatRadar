@@ -12,6 +12,7 @@ onRecordViewRequest((e) => {
     e.next()
 }, "dorfflohmarkt")
 
+
 onRecordsListRequest((e) => {
     e.next()
     console.log("onRecordListRequest: sending mail alert...")
@@ -41,9 +42,15 @@ onRecordCreateRequest((e) => {
     var anzahl = e.record.get("anzahl")
     var kommentar = e.record.get("kommentar")
     var angebot = e.record.get("angebot")
+    var token = e.record.get("token")
+
+    console.log("TOKEN " + token);
+    console.log("config: ", `config.js`)
     
-    const config = require(`${__hooks}/config.js`)
+    const config = require(`config.js`)
+    console.log("check 1")
     const utils = require(`${__hooks}/utils.js`)
+    console.log("check 2")
 
     if (strasse && hausnummer) {
         const geoJson = utils.geocodeAddress(strasse, hausnummer, config.event_plz, config.event_ort, config.event_land, config.google_maps_api_key);
@@ -75,6 +82,8 @@ onRecordCreateRequest((e) => {
     e.app.newMailClient().send(message);
 
     e.next()
+    token = e.record.get("token")
+    console.log("TOKEN after next() " + token);
 }, "dorfflohmarkt");
 
 onRecordUpdateRequest((e) => {

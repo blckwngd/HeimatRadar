@@ -188,10 +188,13 @@ function initHeimatRadar() {
     map.removeControl(map.attributionControl)
   }
   
+  // fetch a paginated records list
+  const resultList = pb.collection('staende').getList(1, 500,).then((e) => {console.log("THEN!", e);});
+
   updateMap(map, staende0)
   updateTable(staende0)
   if (!printView) {
-    window.setInterval(function(){updateData(map)}, 5000)
+    //window.setInterval(function(){updateData(map)}, 5000)
     map.addControl(
       new L.Control.Gps({
          autoActive: true,
